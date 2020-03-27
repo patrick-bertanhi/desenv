@@ -1,0 +1,14 @@
+<p class="text-center">
+ Buscar Endereços
+</p>
+
+<app-header [perfil]="perfilBtn"></app-header>
+
+
+<form>
+  <input type="text" [(ngModel)]="cepInformado" name="cepInformado"  mask="99999-999" placeholder="Buscar Endereço">
+  <button (click)="onFilterCep()">Buscar</button>
+  <button (click)="onClear()">Limpar</button>
+</form>
+
+<app-table [list]="firtEndofList" [isDelete]= "isDelete" (deleteItem)="delete($event)" ></app-table>

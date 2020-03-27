@@ -1,0 +1,13 @@
+<img src="https://www.sccon.com.br/wp-content/uploads/2018/10/logo-sccon-header.png">
+<button *ngIf="perfil.home" clas="btn btn-principal btn-principal-sm"
+[routerLink]="['../home']"
+>Home
+</button>
+<button *ngIf="perfil.historico" clas="btn btn-principal btn-principal-sm"
+[routerLink]="['../enderecos']"
+>Historico de busca
+</button>
+<button *ngIf="perfil.busca" clas="btn btn-principal btn-principal-sm"
+[routerLink]="['../busca-enderecos']"
+>Buscar endereços
+</button>
