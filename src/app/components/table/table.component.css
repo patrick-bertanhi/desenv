@@ -1,2 +1,12 @@
 
-.bordaum td {background:#f0ffff; border:2px double #87ceeb;}
+.bordaum td {background:#f0ffff; border:2px double #929596;}
+
+table {
+  width: 80%;
+}
+
+th {
+  height: 50px;
+  background-color:rgb(152, 174, 187);
+  color: black;
+}
