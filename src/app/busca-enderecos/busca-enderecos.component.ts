@@ -1,16 +1,19 @@
 import { ConsultaService } from './../service/consulta.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorService } from '../behavior.service';
 
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-busca-enderecos',
   templateUrl: './busca-enderecos.component.html',
   styleUrls: ['./busca-enderecos.component.css']
 })
-export class BuscaEnderecosComponent implements OnInit {
+export class BuscaEnderecosComponent implements OnInit, OnDestroy {
+
+  behaviorSubjectSubscription: Subscription;
+  enderecosStore = null;
 
   perfilBtn = {
     home: true,
@@ -22,17 +25,30 @@ export class BuscaEnderecosComponent implements OnInit {
   isDelete = true;
   data;
   constructor(
-    private http: HttpClient,
     private consultaService: ConsultaService,
     private behaviorService: BehaviorService
     ) { }
 
   ngOnInit() {
+    this.buscarEnderecos();
+  }
+  ngOnDestroy() {
+    if (this.behaviorService) {
+      this.behaviorSubjectSubscription.unsubscribe();
+    }
   }
 
+    buscarEnderecos() {
+     this.behaviorSubjectSubscription =  this.behaviorService.data.subscribe(enderecoStore => {
+      if (enderecoStore) {
+        this.enderecosStore = enderecoStore;
+      }
+      });
+    }
 
 
-async  onFilterCep() {
+
+  onFilterCep() {
     if (this.cepInformado !== '' && this.cepInformado !== undefined) {
       this.cepInformado = this.cepInformado.replace(/\D/g, '');
 
@@ -41,11 +57,16 @@ async  onFilterCep() {
 
       // Valida o formato do CEP.
       if (validacep.test(this.cepInformado)) {
-       await this.consultaService.getCep(this.cepInformado).subscribe(item => {
+        this.consultaService.getCep(this.cepInformado).subscribe(item => {
            if (item && item !== undefined) {
             item = {...item, data: this.getDateNow()};
             this.enderecos.push(item);
-            this.behaviorService.updatedDataSelection(this.enderecos);
+            if (this.enderecosStore) {
+              const dadosConcat = [...this.enderecos, ...this.enderecosStore];
+              this.behaviorService.updatedDataSelection(dadosConcat);
+            } else {
+              this.behaviorService.updatedDataSelection(this.enderecos);
+            }
 
            } else {
              return alert('CEP invalido');

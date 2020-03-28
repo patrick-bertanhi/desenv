@@ -11,9 +11,9 @@
 
   <tbody *ngFor="let end of list; let i = index" class="text-center">
     <tr>
-    <td height="20%" >{{end.cep}}</td>
-    <td>{{end.logradouro}}</td>
-    <td>{{end.data}}</td>
+    <td height="20%" >{{end?.cep}}</td>
+    <td>{{end?.logradouro}}</td>
+    <td>{{end?.data}}</td>
     <td *ngIf="end?.cep">
       <button *ngIf="isDelete" (click)= delete(i)>X</button>
     </td>
