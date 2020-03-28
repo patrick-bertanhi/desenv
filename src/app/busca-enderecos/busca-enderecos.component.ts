@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as moment from 'moment';
 import { BehaviorService } from '../behavior.service';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-busca-enderecos',
@@ -18,7 +19,6 @@ export class BuscaEnderecosComponent implements OnInit {
   cepInformado: string;
   enderecos: Array<any> = [];
   isDelete = true;
-  firtEndofList;
   data;
   constructor(
     private http: HttpClient,
@@ -33,6 +33,7 @@ export class BuscaEnderecosComponent implements OnInit {
   onFilterCep() {
     if (this.cepInformado !== '' && this.cepInformado !== undefined) {
       this.cepInformado = this.cepInformado.replace(/\D/g, '');
+
       // Expressão regular para validar o CEP.
       const validacep = /^[0-9]{8}$/;
 
@@ -40,10 +41,9 @@ export class BuscaEnderecosComponent implements OnInit {
       if (validacep.test(this.cepInformado)) {
          this.http.get(`//viacep.com.br/ws/${this.cepInformado}/json`).subscribe(item => {
             if (item && item !== undefined) {
-            this.data = moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
-            item = {...item, data: this.data};
+
+            item = {...item, data: this.getDateNow()};
             this.enderecos.push(item);
-            this.firtEndofList = [item];
             this.behaviorService.updatedDataSelection(this.enderecos);
           }
 
@@ -58,14 +58,19 @@ export class BuscaEnderecosComponent implements OnInit {
 
 }
     onClear() {
-      this.firtEndofList = [];
+      this.enderecos = [];
+      this.cepInformado = '';
       this.behaviorService.updatedDataSelection(this.enderecos);
 
     }
 
     delete(index) {
-      this.firtEndofList.splice(index, 1);
+      this.enderecos.splice(index, 1);
       this.behaviorService.updatedDataSelection(this.enderecos);
+    }
+
+    getDateNow() {
+      return moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
     }
 
 }
