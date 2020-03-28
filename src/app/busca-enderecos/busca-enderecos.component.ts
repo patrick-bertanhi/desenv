@@ -1,3 +1,4 @@
+import { ConsultaService } from './../service/consulta.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorService } from '../behavior.service';
@@ -22,6 +23,7 @@ export class BuscaEnderecosComponent implements OnInit {
   data;
   constructor(
     private http: HttpClient,
+    private consultaService: ConsultaService,
     private behaviorService: BehaviorService
     ) { }
 
@@ -30,7 +32,7 @@ export class BuscaEnderecosComponent implements OnInit {
 
 
 
-  onFilterCep() {
+async  onFilterCep() {
     if (this.cepInformado !== '' && this.cepInformado !== undefined) {
       this.cepInformado = this.cepInformado.replace(/\D/g, '');
 
@@ -39,24 +41,23 @@ export class BuscaEnderecosComponent implements OnInit {
 
       // Valida o formato do CEP.
       if (validacep.test(this.cepInformado)) {
-         this.http.get(`//viacep.com.br/ws/${this.cepInformado}/json`).subscribe(item => {
-            if (item && item !== undefined) {
-
+       await this.consultaService.getCep(this.cepInformado).subscribe(item => {
+           if (item && item !== undefined) {
             item = {...item, data: this.getDateNow()};
             this.enderecos.push(item);
             this.behaviorService.updatedDataSelection(this.enderecos);
-          }
 
-         });
-      } else {
-        return alert('CEP invalido');
-      }
-
+           } else {
+             return alert('CEP invalido');
+           }
+          });
+        }
   } else {
    return alert('preencha o campo com o Cep para que passamos realizar a busca');
-  }
-
+   }
 }
+
+
     onClear() {
       this.enderecos = [];
       this.cepInformado = '';

@@ -1,5 +1,5 @@
 <div style="overflow: auto; width: 1250px; height: 330px;">
-<table *ngFor="let end of list; let i = index"  class="bordaum"  width="800">
+<table class="bordaum"  width="800">
   <thead class="text-center">
     <tr>
     <th>CEP:</th>
@@ -9,7 +9,7 @@
   </tr>
   </thead>
 
-  <tbody class="text-center">
+  <tbody *ngFor="let end of list; let i = index" class="text-center">
     <tr>
     <td height="20%" >{{end.cep}}</td>
     <td>{{end.logradouro}}</td>
