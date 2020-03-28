@@ -5,30 +5,30 @@ import { DesafioAgularComponent } from './desafio-agular/desafio-agular.componen
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ToDosComponent } from './to-dos/to-dos.component';
+import { HomeComponent } from './to-dos/home.component';
 
 const routes: Routes = [
     { path: '',
-      component: ToDosComponent
+      component: HomeComponent
 },
 {
-  path:'home',
-  component: ToDosComponent
+  path: 'home',
+  component: HomeComponent
 },
 {
-    path:'desafio-angular',
+    path: 'desafio-angular',
     component: DesafioAgularComponent
 },
 {
-    path:'adicionar',
+    path: 'adicionar',
     component: AdicionarComponent
 },
 {
-  path:'enderecos',
+  path: 'enderecos',
   component: EnderecosListComponent
 },
 {
-  path:'busca-enderecos',
+  path: 'busca-enderecos',
   component: BuscaEnderecosComponent
 }
 

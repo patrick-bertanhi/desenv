@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-to-dos',
-  templateUrl: './to-dos.component.html',
-  styleUrls: ['./to-dos.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class ToDosComponent implements OnInit {
+export class HomeComponent implements OnInit {
   perfilBtn = {
     home: true,
     historico: true,

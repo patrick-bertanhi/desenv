@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ToDosComponent } from './to-dos/to-dos.component';
+import { HomeComponent } from './to-dos/home.component';
 import { HeaderComponent } from './to-dos/Components/header/header.component';
 import { InComponent } from './to-dos/Components/in/in.component';
 import { CommonModule } from '@angular/common';
@@ -23,7 +23,7 @@ import { NgxMaskModule } from 'ngx-mask';
 @NgModule({
   declarations: [
     AppComponent,
-    ToDosComponent,
+    HomeComponent,
     HeaderComponent,
     InComponent,
     ListComponent,
