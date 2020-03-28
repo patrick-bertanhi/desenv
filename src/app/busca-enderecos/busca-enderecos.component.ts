@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import { BehaviorService } from '../behavior.service';
@@ -28,6 +28,8 @@ export class BuscaEnderecosComponent implements OnInit {
   ngOnInit() {
   }
 
+
+
   onFilterCep() {
     if (this.cepInformado !== '' && this.cepInformado !== undefined) {
       this.cepInformado = this.cepInformado.replace(/\D/g, '');
@@ -56,13 +58,13 @@ export class BuscaEnderecosComponent implements OnInit {
 
 }
     onClear() {
-      this.enderecos = [];
+      this.firtEndofList = [];
       this.behaviorService.updatedDataSelection(this.enderecos);
 
     }
 
     delete(index) {
-      this.enderecos.splice(index, 1);
+      this.firtEndofList.splice(index, 1);
       this.behaviorService.updatedDataSelection(this.enderecos);
     }
 

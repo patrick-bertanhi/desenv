@@ -1,12 +1,15 @@
 import { BehaviorService } from './../behavior.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-enderecos-list',
   templateUrl: './enderecos-list.component.html',
   styleUrls: ['./enderecos-list.component.css']
 })
-export class EnderecosListComponent implements OnInit {
+export class EnderecosListComponent implements OnInit, OnDestroy {
+
+  behaviorSubjectSubscription: Subscription;
 
 
   perfilBtn = {
@@ -22,8 +25,15 @@ export class EnderecosListComponent implements OnInit {
     this.buscarEnderecos();
   }
 
+  ngOnDestroy() {
+    if (this.behaviorService) {
+      this.behaviorSubjectSubscription.unsubscribe();
+
+    }
+  }
+
    async buscarEnderecos() {
-    await this.behaviorService.data.subscribe(enderecoStore => {
+     this.behaviorSubjectSubscription = await this.behaviorService.data.subscribe(enderecoStore => {
       if (enderecoStore) {
       this.enderecosStore = enderecoStore;
       }

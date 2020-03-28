@@ -15,5 +15,9 @@ export class BehaviorService {
         this.dataSource.next(data);
     }
 
+    obterDados() {
+      return this.dataSource;
+    }
+
 
 }
