@@ -1,3 +1,4 @@
+import { DesafioAgularComponent } from './../desafio-agular/desafio-agular.component';
 import { ConsultaService } from './../service/consulta.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorService } from '../behavior.service';
@@ -24,27 +25,34 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   enderecos: Array<any> = [];
   isDelete = true;
   data;
+  dadosConcat;
   constructor(
     private consultaService: ConsultaService,
     private behaviorService: BehaviorService
     ) { }
 
   ngOnInit() {
-    this.buscarEnderecos();
+    this.createSubscrition();
   }
+
   ngOnDestroy() {
     if (this.behaviorService) {
       this.behaviorSubjectSubscription.unsubscribe();
     }
   }
 
-    buscarEnderecos() {
-     this.behaviorSubjectSubscription =  this.behaviorService.data.subscribe(enderecoStore => {
-      if (enderecoStore) {
-        this.enderecosStore = enderecoStore;
-      }
-      });
+  createSubscrition() {
+    this.buscarEnderecos();
+  }
+
+
+  buscarEnderecos() {
+    this.behaviorSubjectSubscription =  this.behaviorService.data.subscribe(enderecoStore => {
+    if (enderecoStore) {
+      this.enderecosStore = enderecoStore;
     }
+    });
+  }
 
 
 
@@ -60,12 +68,14 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
         this.consultaService.getCep(this.cepInformado).subscribe(item => {
            if (item && item !== undefined) {
             item = {...item, data: this.getDateNow()};
-            this.enderecos.push(item);
             if (this.enderecosStore) {
-              const dadosConcat = [...this.enderecos, ...this.enderecosStore];
-              this.behaviorService.updatedDataSelection(dadosConcat);
+              this.enderecosStore.push(item);
+              this.behaviorService.updatedDataSelection(this.enderecosStore);
+              if (this.enderecos.length <= 1) { this.enderecos.push(item); }
+              return;
             } else {
-              this.behaviorService.updatedDataSelection(this.enderecos);
+              this.enderecos.push(item);
+              return this.behaviorService.updatedDataSelection(this.enderecos);
             }
 
            } else {
@@ -73,26 +83,29 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
            }
           });
         }
-  } else {
-   return alert('preencha o campo com o Cep para que passamos realizar a busca');
-   }
-}
+      } else {
+      return alert('preencha o campo com o Cep para que passamos realizar a busca');
+      }
+  }
 
 
-    onClear() {
-      this.enderecos = [];
-      this.cepInformado = '';
-      this.behaviorService.updatedDataSelection(this.enderecos);
+  onClear() {
+    this.enderecos = [];
+    this.cepInformado = '';
+    this.behaviorService.updatedDataSelection(this.enderecos);
 
-    }
+  }
 
-    delete(index) {
+  delete(index) {
+      this.enderecosStore = this.enderecosStore.filter(item => {
+      return item.data !== this.enderecos[index].data;
+      });
       this.enderecos.splice(index, 1);
-      this.behaviorService.updatedDataSelection(this.enderecos);
-    }
+      this.behaviorService.updatedDataSelection(this.enderecosStore);
+  }
 
-    getDateNow() {
-      return moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
-    }
+  getDateNow() {
+    return moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
+  }
 
 }

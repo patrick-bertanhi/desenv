@@ -5,7 +5,7 @@
 <form>
   <input type="text" [(ngModel)]="cepInformado" name="cepInformado"  mask="99999-999" placeholder="Buscar Endereço">
   <button (click)="onFilterCep()">Buscar</button>
-  <button (click)="onClear()">Limpar</button>
+  <button (click)="onClear()">Limpar tudo</button>
 </form>
 
 <app-table [list]="enderecos" [isDelete]= "isDelete" (deleteItem)="delete($event)" ></app-table>
