@@ -3,11 +3,12 @@
 [routerLink]="['../home']"
 >Home
 </button>
-<button *ngIf="perfil.historico" clas="btn btn-principal btn-principal-sm"
-[routerLink]="['../enderecos']"
->Historico de busca
-</button>
 <button *ngIf="perfil.busca" clas="btn btn-principal btn-principal-sm"
 [routerLink]="['../busca-enderecos']"
->Buscar endereços
+>Buscar endereços por cep
 </button>
+<button *ngIf="perfil.historico" clas="btn btn-principal btn-principal-sm"
+[routerLink]="['../enderecos']"
+>Histórico de busca por cep
+</button>
+

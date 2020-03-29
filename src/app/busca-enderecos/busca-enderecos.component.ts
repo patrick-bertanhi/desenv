@@ -16,6 +16,13 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   behaviorSubjectSubscription: Subscription;
   enderecosStore = null;
 
+  newCpf;
+  newCnpj;
+  newCns;
+  newCidades;
+  newEstados;
+  newRegioes;
+
   perfilBtn = {
     home: true,
     historico: true,
@@ -106,6 +113,60 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
   getDateNow() {
     return moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
+  }
+
+  chamadasApis() {
+    this.consultaService.getNewCpf().subscribe(item => {
+      if (item) {
+        this.newCpf = item;
+        console.log(this.newCpf.data.data);
+      }
+    });
+
+    this.consultaService.getNewCnpj().subscribe(item => {
+      if (item) {
+        this.newCnpj = item;
+        console.log(this.newCnpj.data);
+      }
+    });
+
+    this.consultaService.getNewCns().subscribe(item => {
+      if (item) {
+        this.newCns = item;
+        console.log(this.newCns.data);
+      }
+    });
+
+    this.consultaService.listarCidadesBr().subscribe(item => {
+      if (item) {
+        this.newCidades = item;
+        console.log(this.newCidades.data);
+      }
+    });
+
+    this.consultaService.listarEstados().subscribe(item => {
+      if (item) {
+        this.newEstados = item;
+        console.log(this.newEstados.data);
+      }
+    });
+
+    this.consultaService.listarRegioes().subscribe(item => {
+      if (item) {
+        this.newRegioes = item;
+        console.log(this.newRegioes.data);
+      }
+    });
+  }
+
+  validaRetornoApi(retorno) {
+    retorno.filter(item => {
+      if (item.status !== '0') {
+        return true;
+      } else if (item.status === '0') {
+        return alert(item.data.message);
+      }
+    });
   }
 
 }
