@@ -1,4 +1,3 @@
-import { DesafioAgularComponent } from './../desafio-agular/desafio-agular.component';
 import { ConsultaService } from './../service/consulta.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorService } from '../behavior.service';
@@ -121,52 +120,73 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
         this.newCpf = item;
         console.log(this.newCpf.data.data);
       }
-    });
+    },
+    erro => {
+      this.validaRetornoApi(erro);
+    }
+    );
 
     this.consultaService.getNewCnpj().subscribe(item => {
       if (item) {
         this.newCnpj = item;
         console.log(this.newCnpj.data);
       }
-    });
+    },
+    erro => {
+      this.validaRetornoApi(erro);
+    }
+    );
 
     this.consultaService.getNewCns().subscribe(item => {
       if (item) {
         this.newCns = item;
         console.log(this.newCns.data);
       }
-    });
+    },
+    erro => {
+      this.validaRetornoApi(erro);
+    }
+    );
 
     this.consultaService.listarCidadesBr().subscribe(item => {
       if (item) {
         this.newCidades = item;
         console.log(this.newCidades.data);
       }
-    });
+    },
+    erro => {
+      this.validaRetornoApi(erro);
+    }
+    );
 
     this.consultaService.listarEstados().subscribe(item => {
       if (item) {
         this.newEstados = item;
         console.log(this.newEstados.data);
       }
-    });
+    },
+    erro => {
+      this.validaRetornoApi(erro);
+    }
+    );
 
     this.consultaService.listarRegioes().subscribe(item => {
       if (item) {
         this.newRegioes = item;
         console.log(this.newRegioes.data);
       }
-    });
+    },
+    erro => {
+      this.validaRetornoApi(erro);
+    }
+    );
   }
 
-  validaRetornoApi(retorno) {
-    retorno.filter(item => {
-      if (item.status !== '0') {
-        return true;
-      } else if (item.status === '0') {
-        return alert(item.data.message);
-      }
-    });
+  validaRetornoApi(erro) {
+    if (erro.error.status === '0') {
+      return console.log(erro.error.data.message);
+    }
+    return;
   }
 
 }

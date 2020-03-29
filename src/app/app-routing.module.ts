@@ -1,11 +1,8 @@
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { EnderecosListComponent } from './enderecos-list/enderecos-list.component';
-import { AdicionarComponent } from './desafio-agular/adicionar/adicionar.component';
-import { DesafioAgularComponent } from './desafio-agular/desafio-agular.component';
-import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './to-dos/home.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
     { path: '',
@@ -14,14 +11,6 @@ const routes: Routes = [
 {
   path: 'home',
   component: HomeComponent
-},
-{
-    path: 'desafio-angular',
-    component: DesafioAgularComponent
-},
-{
-    path: 'adicionar',
-    component: AdicionarComponent
 },
 {
   path: 'enderecos',
