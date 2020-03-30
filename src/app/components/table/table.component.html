@@ -3,9 +3,11 @@
   <thead class="text-center">
     <tr>
     <th>CEP:</th>
-    <th >ENDEREÇO</th>
-    <th >DATA</th>
-    <th >EXCLUIR</th>
+    <th>ENDEREÇO</th>
+    <th>BAIRRO</th>
+    <th>LOCALIDADE/UF</th>
+    <th>DATA</th>
+    <th>EXCLUIR</th>
   </tr>
   </thead>
 
@@ -13,6 +15,8 @@
     <tr>
     <td height="20%" >{{end?.cep}}</td>
     <td>{{end?.logradouro}}</td>
+    <td>{{end?.bairro}}</td>
+    <td>{{end?.localidade + ' - ' + end?.uf}}</td>
     <td>{{end?.data}}</td>
     <td *ngIf="end?.cep">
       <button *ngIf="isDelete" (click)= delete(i)>X</button>
