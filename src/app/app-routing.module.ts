@@ -1,3 +1,4 @@
+import { GeradorComponent } from './gerador/gerador.component';
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { EnderecosListComponent } from './enderecos-list/enderecos-list.component';
 import { NgModule } from '@angular/core';
@@ -19,6 +20,10 @@ const routes: Routes = [
 {
   path: 'busca-enderecos',
   component: BuscaEnderecosComponent
+},
+{
+  path: 'gerador',
+  component: GeradorComponent
 }
 
 ];

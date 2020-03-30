@@ -15,7 +15,8 @@ export class EnderecosListComponent implements OnInit, OnDestroy {
   perfilBtn = {
     home: true,
     historico: false,
-    busca: true
+    busca: true,
+    gerador: true
   };
   enderecosStore;
   isDelete = false;

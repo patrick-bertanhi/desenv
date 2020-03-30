@@ -9,7 +9,8 @@ export class HomeComponent implements OnInit {
   perfilBtn = {
     home: true,
     historico: true,
-    busca: true
+    busca: true,
+    gerador: true
   };
 
   constructor() { }

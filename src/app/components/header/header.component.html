@@ -11,4 +11,8 @@
 [routerLink]="['../enderecos']"
 >Histórico de busca por cep
 </button>
+<button *ngIf="perfil.gerador" clas="btn btn-principal btn-principal-sm"
+[routerLink]="['../gerador']"
+>Gerar CPF/CNPJ/CNS
+</button>
 

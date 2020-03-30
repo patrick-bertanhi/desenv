@@ -13,6 +13,7 @@ import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.compo
 import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './components/table/table.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { GeradorComponent } from './gerador/gerador.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NgxMaskModule } from 'ngx-mask';
     HeaderComponent,
     EnderecosListComponent,
     BuscaEnderecosComponent,
-    TableComponent
+    TableComponent,
+    GeradorComponent
   ],
   imports: [
     BrowserModule,

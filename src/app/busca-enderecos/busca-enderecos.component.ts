@@ -14,6 +14,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
   behaviorSubjectSubscription: Subscription;
   enderecosStore = null;
+  loading = false;
 
   newCpf;
   newCnpj;
@@ -25,7 +26,8 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   perfilBtn = {
     home: true,
     historico: true,
-    busca: false
+    busca: false,
+    gerador: true
   };
   cepInformado: string;
   enderecos: Array<any> = [];
@@ -63,6 +65,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
 
   onFilterCep() {
+    this.loading = true;
     if (this.cepInformado !== '' && this.cepInformado !== undefined) {
       this.cepInformado = this.cepInformado.replace(/\D/g, '');
 
@@ -73,6 +76,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
       if (validacep.test(this.cepInformado)) {
         this.consultaService.getCep(this.cepInformado).subscribe(item => {
            if (item && item !== undefined) {
+            this.loading = false;
             item = {...item, data: this.getDateNow()};
             if (this.enderecosStore) {
               this.enderecosStore.push(item);
