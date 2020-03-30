@@ -9,12 +9,12 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   margin-top: -10px;
   margin-left: -10px;
   border-radius: 50%;
-  border: 2px solid #635f5f;
-  border-top-color: #f57906;
+  border: 3px groove #635f5f;
+  border-top-color: #fd8700;
   animation: spinner .8s linear infinite;
 }
