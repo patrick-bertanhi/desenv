@@ -6,11 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
   perfilBtn = {
-    home: true,
+    home: false,
     historico: true,
     busca: true,
-    gerador: true
+    gerador: true,
+    validador: true
   };
 
   constructor() { }

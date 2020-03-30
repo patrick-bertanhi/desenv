@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TableComponent } from './components/table/table.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { GeradorComponent } from './gerador/gerador.component';
+import { ValidadorComponent } from './validador/validador.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { GeradorComponent } from './gerador/gerador.component';
     EnderecosListComponent,
     BuscaEnderecosComponent,
     TableComponent,
-    GeradorComponent
+    GeradorComponent,
+    ValidadorComponent
   ],
   imports: [
     BrowserModule,

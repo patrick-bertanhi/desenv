@@ -16,7 +16,8 @@ export class EnderecosListComponent implements OnInit, OnDestroy {
     home: true,
     historico: false,
     busca: true,
-    gerador: true
+    gerador: true,
+    validador: true
   };
   enderecosStore;
   isDelete = false;

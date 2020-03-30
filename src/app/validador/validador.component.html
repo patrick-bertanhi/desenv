@@ -1,0 +1,13 @@
+<app-header [perfil]="perfilBtn"></app-header>
+
+<div class="row inputValid">
+  <input [(ngModel)]="cpf" placeholder="Insira o cpf">
+
+  <input [(ngModel)]="cnpj" placeholder="Insira o cnpj">
+
+  <input [(ngModel)]="cns" placeholder="Insira o cns">
+  <button
+  clas="btn btn-principal btn-principal-sm"
+  (click)="validar()"
+  >Validar</button>
+</div>

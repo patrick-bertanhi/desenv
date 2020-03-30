@@ -27,7 +27,8 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
     home: true,
     historico: true,
     busca: false,
-    gerador: true
+    gerador: true,
+    validador: true
   };
   cepInformado: string;
   enderecos: Array<any> = [];

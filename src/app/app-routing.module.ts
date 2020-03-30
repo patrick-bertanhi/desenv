@@ -1,3 +1,4 @@
+import { ValidadorComponent } from './validador/validador.component';
 import { GeradorComponent } from './gerador/gerador.component';
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { EnderecosListComponent } from './enderecos-list/enderecos-list.component';
@@ -24,7 +25,12 @@ const routes: Routes = [
 {
   path: 'gerador',
   component: GeradorComponent
+},
+{
+  path: 'validador',
+  component: ValidadorComponent
 }
+
 
 ];
 

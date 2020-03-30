@@ -15,4 +15,8 @@
 [routerLink]="['../gerador']"
 >Gerar CPF/CNPJ/CNS
 </button>
+<button *ngIf="perfil.validador" clas="btn btn-principal btn-principal-sm"
+[routerLink]="['../validador']"
+>Validar CPF/CNPJ/CNS
+</button>
 

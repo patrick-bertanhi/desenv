@@ -22,7 +22,8 @@ export class GeradorComponent implements OnInit {
     home: true,
     historico: true,
     busca: true,
-    gerador: false
+    gerador: false,
+    validador: true
   };
 
   constructor(
