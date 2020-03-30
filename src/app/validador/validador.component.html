@@ -1,13 +1,31 @@
 <app-header [perfil]="perfilBtn"></app-header>
 
 <div class="row inputValid">
-  <input [(ngModel)]="cpf" placeholder="Insira o cpf">
-
-  <input [(ngModel)]="cnpj" placeholder="Insira o cnpj">
-
-  <input [(ngModel)]="cns" placeholder="Insira o cns">
   <button
+  mat-raised-button color="primary"
+  [class.spinner]="loading"
+  [disabled]="loading"
   clas="btn btn-principal btn-principal-sm"
-  (click)="validar()"
-  >Validar</button>
+  (click)="validarCpf()"
+  >Validar Cpf</button>
+  <input [(ngModel)]="cpf" placeholder="Insira o cpf" mask="000.000.000-00">
+
+  <button
+  mat-raised-button color="primary"
+  [class.spinner]="loading"
+  [disabled]="loading"
+  clas="btn btn-principal btn-principal-sm"
+  (click)="validarCnpj()"
+  >Validar Cnpj</button>
+  <input [(ngModel)]="cnpj" placeholder="Insira o cnpj" mask="00.000.000/0000-00">
+
+  <button
+  mat-raised-button color="primary"
+  [class.spinner]="loading"
+  [disabled]="loading"
+  clas="btn btn-principal btn-principal-sm"
+  (click)="validarCns()"
+  >Validar Cns</button>
+  <input [(ngModel)]="cns" placeholder="Insira o cns">
+
 </div>
