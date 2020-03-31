@@ -1,0 +1,49 @@
+/* :host {
+  display: block;
+} */
+
+.titleLogin {
+  padding-left: 42%;
+  position: absolute;
+}
+
+.inpBtnLogin {
+  padding: 6% 38%;
+  position: relative;
+}
+
+.btnLogin{
+  position: relative;
+  padding: 1% 26%;
+}
+
+.positionAbs {
+  position: absolute;
+}
+.login-page {
+  position: absolute;
+  bottom: 0;
+  width: 99%;
+  top: 58px;
+  overflow: auto;
+  background-size: contain;
+  border: 1px groove #72ebf0;
+}
+
+  #user-icon {
+    background: #ffffff url('./../../assets/images/user-icon.png') left center no-repeat;
+    background-size: 14px;
+    display: inline-block;
+    overflow: hidden;
+    background-position-x: 13px;
+    padding-left: 40px;
+  }
+
+  #password-icon {
+    background: #ffffff url('./../../assets/images/password-icon.png') left center no-repeat;
+    background-size: 14px;
+    display: inline-block;
+    overflow: hidden;
+    background-position-x: 13px;
+    padding-left: 40px;
+  }

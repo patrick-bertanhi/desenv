@@ -1,3 +1,5 @@
+import { LoginResolver } from './resolver/login.resolver';
+import { LoginComponent } from './login/login.component';
 import { ValidadorComponent } from './validador/validador.component';
 import { GeradorComponent } from './gerador/gerador.component';
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
@@ -7,35 +9,44 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-    { path: '',
-      component: HomeComponent
+{ path: '',
+  component: LoginComponent
+},
+{
+  path: 'login',
+  component: LoginComponent,
 },
 {
   path: 'home',
-  component: HomeComponent
+  component: HomeComponent,
+  resolve: { aut: LoginResolver }
 },
 {
   path: 'enderecos',
-  component: EnderecosListComponent
+  component: EnderecosListComponent,
+  resolve: { aut: LoginResolver }
 },
 {
   path: 'busca-enderecos',
-  component: BuscaEnderecosComponent
+  component: BuscaEnderecosComponent,
+  resolve: { aut: LoginResolver }
 },
 {
   path: 'gerador',
-  component: GeradorComponent
+  component: GeradorComponent,
+  resolve: { aut: LoginResolver }
 },
 {
   path: 'validador',
-  component: ValidadorComponent
+  component: ValidadorComponent,
+  resolve: { aut: LoginResolver }
+
 }
-
-
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [LoginResolver]
 })
 export class AppRoutingModule { }

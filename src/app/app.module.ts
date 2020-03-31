@@ -1,6 +1,7 @@
 import { ConsultaService } from './service/consulta.service';
 import { BehaviorService } from './behavior.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,8 @@ import { TableComponent } from './components/table/table.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { GeradorComponent } from './gerador/gerador.component';
 import { ValidadorComponent } from './validador/validador.component';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './service/login.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { ValidadorComponent } from './validador/validador.component';
     BuscaEnderecosComponent,
     TableComponent,
     GeradorComponent,
-    ValidadorComponent
+    ValidadorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,8 @@ import { ValidadorComponent } from './validador/validador.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     NgxMaskModule.forRoot()
 
@@ -45,7 +51,7 @@ import { ValidadorComponent } from './validador/validador.component';
     NgxMaskModule
   ],
   providers: [ConsultaService,
-    BehaviorService],
+    BehaviorService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

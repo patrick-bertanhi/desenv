@@ -1,0 +1,42 @@
+<div class="login-page" [@routerTransition]>
+    <div class="row row-form-login">
+      <form role="form" class="login-form" (ngSubmit)="onLoggedin()">
+        <h1 class="titleLogin">Login</h1>
+        <p>**Login: admin</p>
+        <p>**Senha: admin</p>
+
+        <div class="inpBtnLogin">
+          <div>
+            <input
+              type="text"
+              required
+              minlength="4"
+              id="user-icon"
+              name="user"
+              [placeholder]="'user'"
+              [(ngModel)]="user"
+            />
+          </div>
+
+          <div>
+            <input
+              type="password"
+              required
+              minlength="4"
+              [placeholder]="'password'"
+              id="password-icon"
+              name="password"
+              [(ngModel)]="password"
+            />
+          </div>
+
+          <div class="btnLogin">
+            <button type="submit" class="positionAbs">
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+</div>
