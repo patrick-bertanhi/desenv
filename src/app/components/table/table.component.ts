@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  @Input() isDelete = true;
+  @Input() canDelete = true;
 
   @Input() list;
   @Output() deleteItem = new EventEmitter();

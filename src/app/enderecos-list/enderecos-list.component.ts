@@ -19,8 +19,8 @@ export class EnderecosListComponent implements OnInit, OnDestroy {
     gerador: true,
     validador: true
   };
-  enderecosStore;
-  isDelete = false;
+  enderecos;
+  delete = false;
   constructor(private behaviorService: BehaviorService) { }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class EnderecosListComponent implements OnInit, OnDestroy {
    async buscarEnderecos() {
      this.behaviorSubjectSubscription = await this.behaviorService.data.subscribe(enderecoStore => {
       if (enderecoStore) {
-      this.enderecosStore = enderecoStore;
+      this.enderecos = enderecoStore;
       }
       });
   }

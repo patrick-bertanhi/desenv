@@ -12,4 +12,4 @@
   <button (click)="onClear()">Limpar tudo</button>
 </form>
 
-<app-table [list]="enderecos" [isDelete]= "isDelete" (deleteItem)="delete($event)" ></app-table>
+<app-table [list]="enderecos" [canDelete]= "delete" (deleteItem)="deleteItem($event)" ></app-table>

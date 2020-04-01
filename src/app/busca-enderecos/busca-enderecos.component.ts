@@ -26,7 +26,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   };
   cepInformado: string;
   enderecos: Array<any> = [];
-  isDelete = true;
+  delete = true;
   constructor(
     private consultaService: ConsultaService,
     private behaviorService: BehaviorService
@@ -88,7 +88,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
   }
 
-  delete(index) {
+  deleteItem(index) {
       this.enderecosStore = this.enderecosStore.filter(item => {
       return item.data !== this.enderecos[index].data;
       });

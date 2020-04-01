@@ -19,7 +19,7 @@
     <td>{{end?.state_name + ' - ' + end?.state}}</td>
     <td>{{end?.data}}</td>
     <td *ngIf="end?.number_formatted">
-      <button *ngIf="isDelete" (click)= delete(i)>X</button>
+      <button *ngIf="canDelete" (click)= delete(i)>X</button>
     </td>
   </tr>
   </tbody>
