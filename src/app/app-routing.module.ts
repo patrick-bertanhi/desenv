@@ -7,6 +7,7 @@ import { EnderecosListComponent } from './enderecos-list/enderecos-list.componen
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 
 const routes: Routes = [
 { path: '',
@@ -19,7 +20,7 @@ const routes: Routes = [
 {
   path: 'home',
   component: HomeComponent,
-  resolve: { aut: LoginResolver }
+  canActivate: [AuthGuardService]
 },
 {
   path: 'enderecos',

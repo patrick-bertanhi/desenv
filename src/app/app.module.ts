@@ -18,6 +18,7 @@ import { GeradorComponent } from './gerador/gerador.component';
 import { ValidadorComponent } from './validador/validador.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './shared/service/login.service';
+import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -50,8 +51,11 @@ import { LoginService } from './shared/service/login.service';
     TableComponent,
     NgxMaskModule
   ],
-  providers: [ConsultaService,
-  BehaviorService, LoginService],
+  providers: [
+  ConsultaService,
+  BehaviorService,
+  LoginService,
+  AuthGuardService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
