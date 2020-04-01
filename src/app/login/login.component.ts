@@ -11,8 +11,8 @@ import { routerTransition } from '../router.animations';
 export class LoginComponent implements OnInit {
 
 
-  user;
-  password;
+  user: string;
+  password: string;
 
   constructor(private loginService: LoginService) { }
 
@@ -23,11 +23,11 @@ export class LoginComponent implements OnInit {
     if (this.emptyError()) {
       this.password = btoa(this.password);
       this.loginService.validacaoLogin(this.user, this.password);
-      this.clear();
+      this.clearInputs();
     }
   }
 
-  clear() {
+  clearInputs() {
     this.user = null;
     this.password = null;
   }

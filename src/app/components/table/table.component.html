@@ -13,12 +13,12 @@
 
   <tbody *ngFor="let end of list; let i = index" class="text-center">
     <tr>
-    <td height="20%" >{{end?.cep}}</td>
-    <td>{{end?.logradouro}}</td>
-    <td>{{end?.bairro}}</td>
-    <td>{{end?.localidade + ' - ' + end?.uf}}</td>
+    <td height="20%" >{{end?.number_formatted}}</td>
+    <td>{{end?.address}}</td>
+    <td>{{end?.abbreviated_district}}</td>
+    <td>{{end?.state_name + ' - ' + end?.state}}</td>
     <td>{{end?.data}}</td>
-    <td *ngIf="end?.cep">
+    <td *ngIf="end?.number_formatted">
       <button *ngIf="isDelete" (click)= delete(i)>X</button>
     </td>
   </tr>

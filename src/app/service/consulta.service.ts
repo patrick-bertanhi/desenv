@@ -10,7 +10,7 @@ export class ConsultaService {
   constructor(private http: HttpClient) { }
 
   getCep(cep) {
-   return this.http.get(`//viacep.com.br/ws/${cep}/json`);
+   return this.http.get(`http://geradorapp.com/api/v1/cep/search/${cep}?token=${this.tokenApi}`);
   }
 
   getNewCpf() {
@@ -45,7 +45,6 @@ export class ConsultaService {
     return this.http.get(`http://geradorapp.com/api/v1/cities/${siglaEstado}?token=${this.tokenApi}`);
   }
 
-  // Ex centro Oeste, etc ...
   listarRegioes() {
     return this.http.get(`http://geradorapp.com/api/v1/regions?token=${this.tokenApi}`);
   }

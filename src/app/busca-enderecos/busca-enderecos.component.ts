@@ -13,15 +13,9 @@ import { Subscription } from 'rxjs';
 export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
   behaviorSubjectSubscription: Subscription;
-  enderecosStore = null;
+  enderecosStore;
   loading = false;
-
-  newCpf;
-  newCnpj;
-  newCns;
-  newCidades;
-  newEstados;
-  newRegioes;
+  retornoApi: any;
 
   perfilBtn = {
     home: true,
@@ -33,8 +27,6 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   cepInformado: string;
   enderecos: Array<any> = [];
   isDelete = true;
-  data;
-  dadosConcat;
   constructor(
     private consultaService: ConsultaService,
     private behaviorService: BehaviorService
@@ -59,6 +51,8 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
     this.behaviorSubjectSubscription =  this.behaviorService.data.subscribe(enderecoStore => {
     if (enderecoStore) {
       this.enderecosStore = enderecoStore;
+    } else {
+      this.enderecosStore = [];
     }
     });
   }
@@ -67,30 +61,17 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
   onFilterCep() {
     this.loading = true;
-    if (this.cepInformado !== '' && this.cepInformado !== undefined) {
+    if (this.notIsEmpty(this.cepInformado)) {
       this.cepInformado = this.cepInformado.replace(/\D/g, '');
 
-      // Expressão regular para validar o CEP.
-      const validacep = /^[0-9]{8}$/;
-
-      // Valida o formato do CEP.
-      if (validacep.test(this.cepInformado)) {
+      if (this.validaFormatoCep(this.cepInformado)) {
         this.consultaService.getCep(this.cepInformado).subscribe(item => {
-           if (item && item !== undefined) {
-            this.loading = false;
-            item = {...item, data: this.getDateNow()};
-            if (this.enderecosStore) {
-              this.enderecosStore.push(item);
-              this.behaviorService.updatedDataSelection(this.enderecosStore);
-              if (this.enderecos.length <= 1) { this.enderecos.push(item); }
-              return;
-            } else {
-              this.enderecos.push(item);
-              return this.behaviorService.updatedDataSelection(this.enderecos);
-            }
-
-           } else {
-             return alert('CEP invalido');
+           if (this.validaRetornoApi(item)) {
+            this.retornoApi = item;
+            this.retornoApi.data = {...this.retornoApi.data, data: this.getDateNow()};
+            this.enderecosStore.push(this.retornoApi.data);
+            this.enderecos.push(this.retornoApi.data);
+            this.behaviorService.updatedDataSelection(this.enderecosStore);
            }
           });
         }
@@ -103,7 +84,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   onClear() {
     this.enderecos = [];
     this.cepInformado = '';
-    this.behaviorService.updatedDataSelection(this.enderecos);
+    this.behaviorService.updatedDataSelection(this.enderecosStore);
 
   }
 
@@ -119,79 +100,28 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
     return moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
   }
 
-  chamadasApis() {
-    this.consultaService.getNewCpf().subscribe(item => {
-      if (item) {
-        this.newCpf = item;
-        console.log(this.newCpf.data.data);
-      }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
+  notIsEmpty(value): boolean {
+    if (value !== '' && value !== undefined) {
+      return true;
+    } else {
+      return false;
     }
-    );
-
-    this.consultaService.getNewCnpj().subscribe(item => {
-      if (item) {
-        this.newCnpj = item;
-        console.log(this.newCnpj.data);
-      }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
-    }
-    );
-
-    this.consultaService.getNewCns().subscribe(item => {
-      if (item) {
-        this.newCns = item;
-        console.log(this.newCns.data);
-      }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
-    }
-    );
-
-    this.consultaService.listarCidadesBr().subscribe(item => {
-      if (item) {
-        this.newCidades = item;
-        console.log(this.newCidades.data);
-      }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
-    }
-    );
-
-    this.consultaService.listarEstados().subscribe(item => {
-      if (item) {
-        this.newEstados = item;
-        console.log(this.newEstados.data);
-      }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
-    }
-    );
-
-    this.consultaService.listarRegioes().subscribe(item => {
-      if (item) {
-        this.newRegioes = item;
-        console.log(this.newRegioes.data);
-      }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
-    }
-    );
   }
 
+  validaFormatoCep(value): boolean {
+    const validacep = /^[0-9]{8}$/;
+    return validacep.test(value);
+  }
+
+
   validaRetornoApi(erro) {
-    if (erro.error.status === '0') {
-      return console.log(erro.error.data.message);
+    if (erro.status === '0') {
+      this.loading = false;
+      alert(erro.data.message);
+      return false;
     }
-    return;
+    this.loading = false;
+    return true;
   }
 
 }
