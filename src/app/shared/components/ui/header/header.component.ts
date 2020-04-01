@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,9 +14,31 @@ export class HeaderComponent implements OnInit {
     busca: true
   };
 
-  constructor() { }
+  constructor(
+    private route: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  onRedirectHome() {
+    this.route.navigate(['home']);
+  }
+
+  onRedirectBuscaEnd() {
+    this.route.navigate(['busca-enderecos']);
+  }
+
+  onRedirectEnd() {
+    this.route.navigate(['enderecos']);
+  }
+
+  onRedirectGerador() {
+    this.route.navigate(['gerador']);
+  }
+
+  onRedirectValid() {
+    this.route.navigate(['validador']);
   }
 
 }
