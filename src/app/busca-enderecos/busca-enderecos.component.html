@@ -2,8 +2,10 @@
 <app-header [perfil]="perfilBtn"></app-header>
 
 
-<form>
-  <input type="text" [(ngModel)]="cepInformado" name="cepInformado"  mask="99999-999" placeholder="Buscar Endereço">
+<form [formGroup]="formFilter">
+  <input type="text"
+  formControlName="cep"
+  name="cepInformado"  mask="99999-999" placeholder="Buscar Endereço">
   <button
   mat-raised-button color="primary"
   [class.spinner]="loading"
@@ -12,4 +14,8 @@
   <button (click)="onClear()">Limpar tudo</button>
 </form>
 
-<app-table [list]="enderecos" [canDelete]= "delete" (deleteItem)="deleteItem($event)" ></app-table>
+<app-table
+[list]="enderecos"
+[formFilter]="formFilter"
+[canDelete]= "delete"
+(deleteItem)="deleteItem($event)" ></app-table>

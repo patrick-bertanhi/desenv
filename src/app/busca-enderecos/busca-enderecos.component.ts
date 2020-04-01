@@ -4,6 +4,7 @@ import { BehaviorService } from '../behavior.service';
 
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-busca-enderecos',
@@ -13,6 +14,7 @@ import { Subscription } from 'rxjs';
 export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
   behaviorSubjectSubscription: Subscription;
+  formFilter: FormGroup;
   enderecosStore;
   loading = false;
   retornoApi: any;
@@ -24,15 +26,16 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
     gerador: true,
     validador: true
   };
-  cepInformado: string;
   enderecos: Array<any> = [];
   delete = true;
   constructor(
     private consultaService: ConsultaService,
-    private behaviorService: BehaviorService
+    private behaviorService: BehaviorService,
+    private formBuilder: FormBuilder
     ) { }
 
   ngOnInit() {
+    this.createFormFilter();
     this.createSubscrition();
   }
 
@@ -61,11 +64,10 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
   onFilterCep() {
     this.loading = true;
-    if (this.notIsEmpty(this.cepInformado)) {
-      this.cepInformado = this.cepInformado.replace(/\D/g, '');
+    if (this.notIsEmpty(this.formFilter.value.cep)) {
 
-      if (this.validaFormatoCep(this.cepInformado)) {
-        this.consultaService.getCep(this.cepInformado).subscribe(item => {
+      if (this.validaFormatoCep(this.formFilter.value.cep)) {
+        this.consultaService.getCep(this.formFilter.value.cep).subscribe(item => {
            if (this.validaRetornoApi(item)) {
             this.retornoApi = item;
             this.retornoApi.data = {...this.retornoApi.data, data: this.getDateNow()};
@@ -83,7 +85,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
   onClear() {
     this.enderecos = [];
-    this.cepInformado = '';
+    this.formFilter.setValue({cep: ''});
     this.behaviorService.updatedDataSelection(this.enderecosStore);
 
   }
@@ -122,6 +124,12 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
     }
     this.loading = false;
     return true;
+  }
+
+  createFormFilter(): void {
+    this.formFilter = this.formBuilder.group({
+      cep: ''
+    });
   }
 
 }

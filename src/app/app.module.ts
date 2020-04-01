@@ -2,7 +2,7 @@ import { ConsultaService } from './service/consulta.service';
 import { BehaviorService } from './behavior.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
@@ -51,7 +51,8 @@ import { LoginService } from './service/login.service';
     NgxMaskModule
   ],
   providers: [ConsultaService,
-    BehaviorService, LoginService],
+  BehaviorService, LoginService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
