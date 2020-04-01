@@ -1,6 +1,6 @@
-import { ConsultaService } from './../service/consulta.service';
+import { ConsultaService } from '../shared/service/consulta.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BehaviorService } from '../behavior.service';
+import { BehaviorService } from '../shared/service/behavior.service';
 
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';

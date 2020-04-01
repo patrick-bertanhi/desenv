@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorService } from '../behavior.service';
+import { BehaviorService } from './behavior.service';
 
 @Injectable({
   providedIn: 'root'

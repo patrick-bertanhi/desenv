@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConsultaService } from '../service/consulta.service';
+import { ConsultaService } from '../shared/service/consulta.service';
 
 @Component({
   selector: 'app-gerador',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ConsultaService } from '../service/consulta.service';
+import { ConsultaService } from '../shared/service/consulta.service';
 
 @Component({
   selector: 'app-validador',
@@ -56,41 +56,34 @@ export class ValidadorComponent implements OnInit {
    validaCpf() {
     this.loading = true;
     this.consultaService.validaCpf(this.cpf).subscribe(item => {
-      if (this.validaRetornoApi(item)) {
-        this.loading = false;
-        this.msgCpf = item;
-      }
+      this.validaRetornoApi(item);
     });
   }
 
    validaCnpj() {
     this.loading = true;
     this.consultaService.validaCnpj(this.cnpj).subscribe(item => {
-      if (this.validaRetornoApi(item)) {
-        this.loading = false;
-        this.msgCnpj = item;
-      }
+      this.validaRetornoApi(item);
     });
   }
 
    validaCns() {
     this.loading = true;
     this.consultaService.validaCns(this.cns).subscribe(item => {
-      if (this.validaRetornoApi(item)) {
-        this.loading = false;
-        this.msgCns = item;
-      }
+      this.validaRetornoApi(item);
     });
   }
 
-  validaRetornoApi(erro) {
-    if (erro.status === '0') {
+  validaRetornoApi(retorno) {
+    if (retorno.status === '0') {
       this.loading = false;
-      alert(erro.data.message);
-      return false;
+      alert(retorno.data.message);
+      return;
+    } else {
+      this.loading = false;
+      alert(retorno.data.message);
+      return;
     }
-    this.loading = false;
-    return true;
   }
 
 }

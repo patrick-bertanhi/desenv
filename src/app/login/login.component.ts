@@ -1,4 +1,4 @@
-import { LoginService } from './../service/login.service';
+import { LoginService } from '../shared/service/login.service';
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../router.animations';
 

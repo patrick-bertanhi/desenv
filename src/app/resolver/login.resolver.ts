@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Resolve, Router, ActivatedRouteSnapshot } from '@angular/router';
-import { take } from 'rxjs/operators';
-import { BehaviorService } from '../behavior.service';
+import { BehaviorService } from '../shared/service/behavior.service';
 
 @Injectable()
 export class LoginResolver implements Resolve<boolean> {
