@@ -23,9 +23,9 @@ export class ValidadorComponent implements OnInit {
   cnpj: string;
 
 
-  msgCpf;
-  msgCns;
-  msgCnpj;
+  msgCpf: any;
+  msgCns: any;
+  msgCnpj: any;
 
   constructor(
     private consultaService: ConsultaService
@@ -56,81 +56,41 @@ export class ValidadorComponent implements OnInit {
    validaCpf() {
     this.loading = true;
     this.consultaService.validaCpf(this.cpf).subscribe(item => {
-      if (item) {
+      if (this.validaRetornoApi(item)) {
         this.loading = false;
         this.msgCpf = item;
-        if (this.msgCpf.status === '1') {
-          this.exibirMsgValido(this.msgCpf.data.message);
-        } else if (this.msgCpf.status === '0') {
-          this.exibirMsgInvalido(this.msgCpf.data.message);
-        }
       }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
-    }
-    );
+    });
   }
 
    validaCnpj() {
     this.loading = true;
     this.consultaService.validaCnpj(this.cnpj).subscribe(item => {
-      if (item) {
+      if (this.validaRetornoApi(item)) {
         this.loading = false;
         this.msgCnpj = item;
-        if (this.msgCnpj.status === '1') {
-          this.exibirMsgValido(this.msgCnpj.data.message);
-        } else if (this.msgCnpj.status === '0') {
-          this.exibirMsgInvalido(this.msgCnpj.data.message);
-        }
       }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
-    }
-    );
+    });
   }
 
    validaCns() {
     this.loading = true;
     this.consultaService.validaCns(this.cns).subscribe(item => {
-      if (item) {
+      if (this.validaRetornoApi(item)) {
         this.loading = false;
         this.msgCns = item;
-        if (this.msgCns.status === '1') {
-          this.exibirMsgValido(this.msgCns.data.message);
-        } else if (this.msgCns.status === '0') {
-          this.exibirMsgInvalido(this.msgCns.data.message);
-        }
       }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
-    }
-    );
-  }
-
-  exibirMsgValido(msgRetorno) {
-    if (msgRetorno) {
-      alert(msgRetorno);
-    } else {
-      return;
-    }
-  }
-
-  exibirMsgInvalido(msgRetorno) {
-    if (msgRetorno) {
-      alert(msgRetorno);
-    } else {
-      return;
-    }
+    });
   }
 
   validaRetornoApi(erro) {
-    if (erro.error.status === '0') {
-      return console.log(erro.error.data.message);
+    if (erro.status === '0') {
+      this.loading = false;
+      alert(erro.data.message);
+      return false;
     }
-    return;
+    this.loading = false;
+    return true;
   }
 
 }

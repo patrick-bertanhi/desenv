@@ -36,56 +36,47 @@ export class GeradorComponent implements OnInit {
   onCreateCpf() {
     this.loading = true;
     this.consultaService.getNewCpf().subscribe(item => {
-      if (item) {
+      if (this.validaRetornoApi(item)) {
         this.inputCpf = item;
         this.inputCpf = this.inputCpf.data.number_formatted;
         this.loading = false;
       }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
-    }
-    );
+    });
 
   }
 
   onCreateCnpj() {
     this.loading = true;
     this.consultaService.getNewCnpj().subscribe(item => {
-      if (item) {
+      if (this.validaRetornoApi(item)) {
         this.inputCnpj = item;
         this.inputCnpj = this.inputCnpj.data.number_formatted;
         this.loading = false;
       }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
-    }
-    );
+    });
 
   }
 
   onCreateCns() {
     this.loading = true;
     this.consultaService.getNewCns().subscribe(item => {
-      if (item) {
+      if (this.validaRetornoApi(item)) {
         this.inputCns = item;
         this.inputCns = this.inputCns.data.number_formatted;
         this.loading = false;
       }
-    },
-    erro => {
-      this.validaRetornoApi(erro);
-    }
-    );
+    });
 
   }
 
   validaRetornoApi(erro) {
-    if (erro.error.status === '0') {
-      return console.log(erro.error.data.message);
+    if (erro.status === '0') {
+      this.loading = false;
+      alert(erro.data.message);
+      return false;
     }
-    return;
+    this.loading = false;
+    return true;
   }
 
 }
