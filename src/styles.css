@@ -18,3 +18,8 @@
   border-top-color: #fd8700;
   animation: spinner .8s linear infinite;
 }
+
+.rowGerador {
+  margin-top: 2%;
+    margin-left: 17%;
+}
