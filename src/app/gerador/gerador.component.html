@@ -1,8 +1,7 @@
 <app-header [perfil]="perfilBtn"></app-header>
-<br>
+
 <div class="row rowGerador">
   <button
-  clas="btn btn-principal btn-principal-sm"
   (click)="onCreateCpf()"
   mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading"
   >Gerar Cpf</button>
@@ -10,14 +9,12 @@
 
 
   <button
-  clas="btn btn-principal btn-principal-sm"
   (click)="onCreateCnpj()"
   >Gerar Cnpj</button>
   <input [(ngModel)]="inputCnpj" placeholder="Cnpj gerado" [disabled]="disabledCnpj">
 
 
   <button
-  clas="btn btn-principal btn-principal-sm"
   (click)="onCreateCns()"
   >Gerar Cns</button>
   <input [(ngModel)]="inputCns" placeholder="Cns gerado" [disabled]="disabledCns">

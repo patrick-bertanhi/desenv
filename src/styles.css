@@ -20,6 +20,14 @@
 }
 
 .rowGerador {
-  margin-top: 2%;
     margin-left: 17%;
+}
+
+img {
+  margin-left: 35%;
+}
+
+.btnHeader {
+  margin-left: 24%;
+  padding-bottom: 1.5%;
 }
