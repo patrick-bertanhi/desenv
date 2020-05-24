@@ -22,15 +22,16 @@ export class LoginService {
       return elem.password === this.password && elem.user === this.user;
       });
     if (this.logins.length > 0) {
-      this.setUser({name: this.logins[0].user, isLogged: true});
+      this.setUser({user: this.logins[0].user}, true);
       return of(true);
     } else {
       this.loginInvalido();
     }
   }
 
-  setUser(userData): void {
+  setUser(userData, isLogged): void {
     sessionStorage.setItem('userData', JSON.stringify(userData));
+    sessionStorage.setItem('isLoggedIn', JSON.stringify(isLogged));
   }
 
   usersService() {

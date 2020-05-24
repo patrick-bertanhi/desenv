@@ -10,6 +10,7 @@ export class LoginResolver implements Resolve<boolean> {
       if (sessionStorage.getItem('userData')) {
         return true;
       } else {
+        alert('Sessão expirada, faça login novamente')
         return this.router.navigate(['../login']);
       }
   }

@@ -9,14 +9,12 @@ import { BehaviorService } from '../behavior.service';
 export class AuthGuardService implements CanActivate {
 
   constructor(private router: Router,  private behaviorService: BehaviorService) { }
-  private isAuthenticated = false;
 
    canActivate() {
-    if (sessionStorage.getItem('userData')) {
+    if (sessionStorage.getItem('userData') && sessionStorage.getItem('isLoggedIn')) {
       return true;
     }
-    console.log('Faça o login para acessar o projeto');
-    alert('Faça o login para acessar o projeto');
+    alert('Sessão expirada, faça login novamente');
     this.router.navigate(['login']);
     return false;
   }
