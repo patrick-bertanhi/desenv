@@ -14,6 +14,7 @@ export class AuthGuardService implements CanActivate {
     if (sessionStorage.getItem('userData') && sessionStorage.getItem('isLoggedIn')) {
       return true;
     }
+
     alert('Sessão expirada, faça login novamente');
     this.router.navigate(['login']);
     return false;
