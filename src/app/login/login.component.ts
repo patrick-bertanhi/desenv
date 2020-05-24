@@ -1,6 +1,13 @@
 import { LoginService } from '../shared/service/login.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { routerTransition } from '../router.animations';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store, select } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { AppState } from '../state';
+
+import * as fromLogin from '../state/login';
+
 
 @Component({
   selector: 'app-login',
@@ -8,42 +15,80 @@ import { routerTransition } from '../router.animations';
   styleUrls: ['./login.component.css'],
   animations: [routerTransition()]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  formLogin: FormGroup;
 
+  private subscription = new Subscription();
 
-  user: string;
-  password: string;
+  userLogged: boolean;
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private store$: Store<AppState>
+    ) { }
 
   ngOnInit() {
+    this.createLoginForm();
+    this.createSubscriptions();
+
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  private createSubscriptions(): void {
+    this.subscribeToLogin();
+  }
+
+  subscribeToLogin() {
+    this.subscription.add(
+      this.store$.pipe(select(fromLogin.selectors.selectUserLog)).subscribe(state => {
+        this.userLogged = state ? state : false;
+      })
+    );
+  }
+
+  createLoginForm(): void {
+    this.formLogin = this.formBuilder.group({
+      user: [null, [Validators.required]],
+      password: [null, [Validators.required]]
+    });
   }
 
   onLoggedin() {
     if (this.emptyError()) {
-      this.password = btoa(this.password);
-      this.loginService.validacaoLogin(this.user, this.password);
+      this.dispatchLogin();
       this.clearInputs();
     }
   }
 
   clearInputs() {
-    this.user = null;
-    this.password = null;
+    this.formLogin.patchValue({
+      user: '',
+      password: ''
+    });
+  }
+
+  dispatchLogin() {
+    const user = this.formLogin.value;
+    this.store$.dispatch(new fromLogin.actions.Login({ username: user.user,
+    password: btoa(user.password) }));
   }
 
   emptyError() {
-    if ((!this.user || this.user === '') && (!this.password || this.password === '')) {
+    const user = this.formLogin.value;
+    if ((!user.user || user.user === '') && (!user.password || user.password === '')) {
       alert('Insira o usuario(a) e a senha');
       return false;
      }
 
-    if (!this.user || this.user === '') {
+    if (!user.user || user.user === '') {
       alert('Insira o Usuario(a)');
       return false;
     }
 
-    if (!this.password || this.password === '') {
+    if (!user.password || user.password === '') {
       alert('Insira a senha');
       return false;
     }

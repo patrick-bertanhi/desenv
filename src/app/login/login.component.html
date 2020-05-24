@@ -1,6 +1,6 @@
 <div class="login-page" [@routerTransition]>
     <div class="row row-form-login">
-      <form role="form" class="login-form" (ngSubmit)="onLoggedin()">
+      <form role="form" class="login-form" [formGroup]="formLogin" (ngSubmit)="onLoggedin()">
         <h1 class="titleLogin">Login</h1>
         <p>**Login: admin</p>
         <p>**Senha: admin</p>
@@ -14,7 +14,7 @@
               id="user-icon"
               name="user"
               [placeholder]="'user'"
-              [(ngModel)]="user"
+              formControlName="user"
             />
           </div>
 
@@ -26,12 +26,12 @@
               [placeholder]="'password'"
               id="password-icon"
               name="password"
-              [(ngModel)]="password"
+              formControlName="password"
             />
           </div>
 
           <div class="btnLogin">
-            <button type="submit" class="positionAbs">
+            <button type="submit" class="positionAbs button">
               Login
             </button>
           </div>

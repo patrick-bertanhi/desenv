@@ -3,19 +3,19 @@
 alt="IMAGEM ANGULAR">
 </div>
 <div class="btnHeader">
-<button *ngIf="perfil.home" clas="btn btn-principal btn-principal-sm" (click)="onRedirectHome()"
+<button *ngIf="perfil.home" class="button" (click)="onRedirectHome()"
 >Home
 </button>
-<button *ngIf="perfil.busca" clas="btn btn-principal btn-principal-sm" (click)="onRedirectBuscaEnd()"
+<button *ngIf="perfil.busca" class="button" (click)="onRedirectBuscaEnd()"
 >Buscar endereços por cep
 </button>
-<button *ngIf="perfil.historico" clas="btn btn-principal btn-principal-sm" (click)="onRedirectEnd()"
+<button *ngIf="perfil.historico" class="button" (click)="onRedirectEnd()"
 >Histórico de busca por cep
 </button>
-<button *ngIf="perfil.gerador" clas="btn btn-principal btn-principal-sm"(click)="onRedirectGerador()"
+<button *ngIf="perfil.gerador"class="button" (click)="onRedirectGerador()"
 >Gerar CPF/CNPJ/CNS
 </button>
-<button *ngIf="perfil.validador" clas="btn btn-principal btn-principal-sm" (click)="onRedirectValid()"
+<button *ngIf="perfil.validador" class="button" (click)="onRedirectValid()"
 >Validar CPF/CNPJ/CNS
 </button>
 </div>

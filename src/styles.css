@@ -28,6 +28,23 @@ img {
 }
 
 .btnHeader {
-  margin-left: 24%;
-  padding-bottom: 1.5%;
+    right: 0;
+    transform: translateX(25%);
+    padding-bottom: 1%;
 }
+
+.button {
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+

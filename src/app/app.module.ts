@@ -19,6 +19,7 @@ import { ValidadorComponent } from './validador/validador.component';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './shared/service/login.service';
 import { AuthGuardService } from './shared/service/guards/auth-guard.service';
+import { StateModule } from './state/state.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { AuthGuardService } from './shared/service/guards/auth-guard.service';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    StateModule
 
   ],
   exports: [

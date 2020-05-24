@@ -7,12 +7,10 @@ export class LoginResolver implements Resolve<boolean> {
   constructor(private router: Router,  private behaviorService: BehaviorService) {}
 
   resolve(): any {
-    this.behaviorService.auth.subscribe(aut => {
-      if (aut) {
+      if (sessionStorage.getItem('userData')) {
         return true;
       } else {
         return this.router.navigate(['../login']);
       }
-    });
   }
 }
