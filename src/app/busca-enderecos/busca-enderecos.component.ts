@@ -1,10 +1,14 @@
 import { ConsultaService } from '../shared/service/consulta.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BehaviorService } from '../shared/service/behavior.service';
+import { AppState } from '../state';
+import { Store, select } from '@ngrx/store';
 
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+
+import * as fromEndereco from '../state/endereco';
 
 @Component({
   selector: 'app-busca-enderecos',
@@ -14,6 +18,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
   behaviorSubjectSubscription: Subscription;
+  private subscription = new Subscription();
   formFilter: FormGroup;
   enderecosStore;
   loading = false;
@@ -31,6 +36,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   constructor(
     private consultaService: ConsultaService,
     private behaviorService: BehaviorService,
+    private store$: Store<AppState>,
     private formBuilder: FormBuilder
     ) { }
 
@@ -43,10 +49,13 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
     if (this.behaviorService) {
       this.behaviorSubjectSubscription.unsubscribe();
     }
+    this.subscription.unsubscribe();
+
   }
 
   createSubscrition() {
     this.buscarEnderecos();
+    // this.subscribeToLogin();
   }
 
 
@@ -67,6 +76,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
     if (this.notIsEmpty(this.formFilter.value.cep)) {
 
       if (this.validaFormatoCep(this.formFilter.value.cep)) {
+        // this.dispatchLogin();
         this.consultaService.getCep(this.formFilter.value.cep).subscribe(item => {
            if (this.validaRetornoApi(item)) {
             this.retornoApi = item;
@@ -80,6 +90,22 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
       } else {
       return alert('preencha o campo com o Cep para que passamos realizar a busca');
       }
+  }
+
+  subscribeToLogin() {
+    this.subscription.add(
+      this.store$.pipe(select(fromEndereco.selectors.selectEndereco)).subscribe(state => {
+        if (this.validaRetornoApi(state.endereco)) {
+            this.retornoApi = [state.endereco];
+            this.enderecos.push(this.retornoApi.map(item => item.data)[0]);
+        }
+        console.log(this.enderecos);
+      })
+    );
+  }
+
+  dispatchLogin() {
+    this.store$.dispatch(new fromEndereco.actions.ListarEndereco({cep: this.formFilter.value.cep}));
   }
 
 
