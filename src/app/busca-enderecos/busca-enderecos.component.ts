@@ -31,7 +31,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
     gerador: true,
     validador: true
   };
-  enderecos: Array<any> = [];
+  enderecos;
   delete = true;
   constructor(
     private consultaService: ConsultaService,
@@ -55,7 +55,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
   createSubscrition() {
     this.buscarEnderecos();
-    // this.subscribeToLogin();
+    this.subscribeToLogin();
   }
 
 
@@ -76,16 +76,16 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
     if (this.notIsEmpty(this.formFilter.value.cep)) {
 
       if (this.validaFormatoCep(this.formFilter.value.cep)) {
-        // this.dispatchLogin();
-        this.consultaService.getCep(this.formFilter.value.cep).subscribe(item => {
-           if (this.validaRetornoApi(item)) {
-            this.retornoApi = item;
-            this.retornoApi.data = {...this.retornoApi.data, data: this.getDateNow()};
-            this.enderecosStore.push(this.retornoApi.data);
-            this.enderecos.push(this.retornoApi.data);
-            this.behaviorService.updatedDataSelection(this.enderecosStore);
-           }
-          });
+        this.dispatchLogin();
+        // this.consultaService.getCep(this.formFilter.value.cep).subscribe(item => {
+        //    if (this.validaRetornoApi(item)) {
+        //     this.retornoApi = item;
+        //     this.retornoApi.data = {...this.retornoApi.data, data: this.getDateNow()};
+        //     this.enderecosStore.push(this.retornoApi.data);
+        //     this.enderecos.push(this.retornoApi.data);
+        //     this.behaviorService.updatedDataSelection(this.enderecosStore);
+        //    }
+        //   });
         }
       } else {
       return alert('preencha o campo com o Cep para que passamos realizar a busca');
@@ -95,11 +95,10 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   subscribeToLogin() {
     this.subscription.add(
       this.store$.pipe(select(fromEndereco.selectors.selectEndereco)).subscribe(state => {
-        if (this.validaRetornoApi(state.endereco)) {
-            this.retornoApi = [state.endereco];
-            this.enderecos.push(this.retornoApi.map(item => item.data)[0]);
-        }
-        console.log(this.enderecos);
+            this.enderecos = state['endereco'].map( item => {
+              return {...item, data: this.getDateNow()};
+            });
+            this.loading = false;
       })
     );
   }
@@ -112,7 +111,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   onClear() {
     this.enderecos = [];
     this.formFilter.setValue({cep: ''});
-    this.behaviorService.updatedDataSelection(this.enderecosStore);
+    // this.behaviorService.updatedDataSelection(this.enderecosStore);
 
   }
 
@@ -121,7 +120,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
       return item.data !== this.enderecos[index].data;
       });
       this.enderecos.splice(index, 1);
-      this.behaviorService.updatedDataSelection(this.enderecosStore);
+      // this.behaviorService.updatedDataSelection(this.enderecosStore);
   }
 
   getDateNow() {

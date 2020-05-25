@@ -17,7 +17,7 @@ export class EnderecoEffects {
       this.consultaService.getCep(action.payload.cep).pipe(
         map(response => {
           return new actions.ListarEnderecoSucesso({
-            endereco: response
+            endereco: [response]
           });
         }),
         catchError(() => EMPTY)

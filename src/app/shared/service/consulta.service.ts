@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { recuperarCep } from './../types/query-types';
-import { throwError } from 'rxjs';
+import { throwError, pipe } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +13,13 @@ export class ConsultaService {
   constructor(private http: HttpClient) { }
 
   getCep(cep) {
-   return this.http.get(`http://geradorapp.com/api/v1/cep/search/${cep}?token=${this.tokenApi}`);
-  //  .pipe(
-  //    map(r => {
-  //      return r as recuperarCep;
-  //    }),
-  //    catchError(err => throwError(err))
-  //  );
+   return this.http.get(`http://geradorapp.com/api/v1/cep/search/${cep}?token=${this.tokenApi}`).pipe(
+     map(r => {
+       // tslint:disable-next-line: no-string-literal
+       return r['data'];
+     }),
+     catchError(err => throwError(err))
+   );
   }
 
   getNewCpf() {
