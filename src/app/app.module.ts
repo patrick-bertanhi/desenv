@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './shared/service/login.service';
 import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 import { StateModule } from './state/state.module';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { StateModule } from './state/state.module';
     BrowserAnimationsModule,
     HttpClientModule,
     NgxMaskModule.forRoot(),
-    StateModule
+    StateModule,
+    MatSliderModule
 
   ],
   exports: [
