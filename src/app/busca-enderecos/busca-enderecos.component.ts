@@ -34,7 +34,6 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   enderecos;
   delete = true;
   constructor(
-    private consultaService: ConsultaService,
     private behaviorService: BehaviorService,
     private store$: Store<AppState>,
     private formBuilder: FormBuilder
@@ -52,7 +51,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
 
   }
-
+// tslint:disable
   createSubscrition() {
     this.buscarEnderecos();
     this.subscribeToLogin();
@@ -74,18 +73,8 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   onFilterCep() {
     this.loading = true;
     if (this.notIsEmpty(this.formFilter.value.cep)) {
-
       if (this.validaFormatoCep(this.formFilter.value.cep)) {
         this.dispatchLogin();
-        // this.consultaService.getCep(this.formFilter.value.cep).subscribe(item => {
-        //    if (this.validaRetornoApi(item)) {
-        //     this.retornoApi = item;
-        //     this.retornoApi.data = {...this.retornoApi.data, data: this.getDateNow()};
-        //     this.enderecosStore.push(this.retornoApi.data);
-        //     this.enderecos.push(this.retornoApi.data);
-        //     this.behaviorService.updatedDataSelection(this.enderecosStore);
-        //    }
-        //   });
         }
       } else {
       return alert('preencha o campo com o Cep para que passamos realizar a busca');
@@ -111,16 +100,11 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   onClear() {
     this.enderecos = [];
     this.formFilter.setValue({cep: ''});
-    // this.behaviorService.updatedDataSelection(this.enderecosStore);
 
   }
 
   deleteItem(index) {
-      this.enderecosStore = this.enderecosStore.filter(item => {
-      return item.data !== this.enderecos[index].data;
-      });
       this.enderecos.splice(index, 1);
-      // this.behaviorService.updatedDataSelection(this.enderecosStore);
   }
 
   getDateNow() {

@@ -9,12 +9,14 @@
 
 
   <button
+  mat-raised-button color="primary"
   (click)="onCreateCnpj()"
   >Gerar Cnpj</button>
   <input [(ngModel)]="inputCnpj" placeholder="Cnpj gerado" [disabled]="disabledCnpj">
 
 
   <button
+  mat-raised-button color="primary"
   (click)="onCreateCns()"
   >Gerar Cns</button>
   <input [(ngModel)]="inputCns" placeholder="Cns gerado" [disabled]="disabledCns">

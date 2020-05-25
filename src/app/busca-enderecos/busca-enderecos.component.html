@@ -11,7 +11,9 @@
   [class.spinner]="loading"
   [disabled]="loading"
   (click)="onFilterCep()">Buscar</button>
-  <button (click)="onClear()">Limpar tudo</button>
+  <button
+  mat-raised-button color="primary"
+  (click)="onClear()">Limpar tudo</button>
 </form>
 
 <app-table

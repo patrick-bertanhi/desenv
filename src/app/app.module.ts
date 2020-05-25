@@ -21,6 +21,8 @@ import { LoginService } from './shared/service/login.service';
 import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 import { StateModule } from './state/state.module';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { MatSliderModule } from '@angular/material/slider';
     HttpClientModule,
     NgxMaskModule.forRoot(),
     StateModule,
-    MatSliderModule
+    MatSliderModule,
+    MatButtonModule,
+    MatCheckboxModule
 
   ],
   exports: [
