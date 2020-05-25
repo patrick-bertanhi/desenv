@@ -1,6 +1,4 @@
-import { ConsultaService } from '../shared/service/consulta.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { BehaviorService } from '../shared/service/behavior.service';
 import { AppState } from '../state';
 import { Store, select } from '@ngrx/store';
 
@@ -17,8 +15,9 @@ import * as fromEndereco from '../state/endereco';
 })
 export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
-  behaviorSubjectSubscription: Subscription;
   private subscription = new Subscription();
+
+
   formFilter: FormGroup;
   enderecosStore;
   loading = false;
@@ -34,7 +33,6 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   enderecos;
   delete = true;
   constructor(
-    private behaviorService: BehaviorService,
     private store$: Store<AppState>,
     private formBuilder: FormBuilder
     ) { }
@@ -45,30 +43,13 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.behaviorService) {
-      this.behaviorSubjectSubscription.unsubscribe();
-    }
     this.subscription.unsubscribe();
 
   }
 // tslint:disable
   createSubscrition() {
-    this.buscarEnderecos();
     this.subscribeToLogin();
   }
-
-
-  buscarEnderecos() {
-    this.behaviorSubjectSubscription =  this.behaviorService.data.subscribe(enderecoStore => {
-    if (enderecoStore) {
-      this.enderecosStore = enderecoStore;
-    } else {
-      this.enderecosStore = [];
-    }
-    });
-  }
-
-
 
   onFilterCep() {
     this.loading = true;
