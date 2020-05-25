@@ -19,9 +19,7 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
 
   formFilter: FormGroup;
-  enderecosStore;
   loading = false;
-  retornoApi: any;
 
   perfilBtn = {
     home: true,
@@ -44,8 +42,8 @@ export class BuscaEnderecosComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
-
   }
+
 // tslint:disable
   createSubscrition() {
     this.subscribeToLogin();

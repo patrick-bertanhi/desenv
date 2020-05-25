@@ -8,14 +8,13 @@ import { throwError, pipe } from 'rxjs';
   providedIn: 'root'
 })
 export class ConsultaService {
-
+// tslint:disable
   tokenApi = '11c21a0da6ac3ea14fa3ef685774904f';
   constructor(private http: HttpClient) { }
 
   getCep(cep) {
    return this.http.get(`http://geradorapp.com/api/v1/cep/search/${cep}?token=${this.tokenApi}`).pipe(
      map(r => {
-       // tslint:disable-next-line: no-string-literal
        return r['data'];
      }),
      catchError(err => throwError(err))
@@ -23,7 +22,12 @@ export class ConsultaService {
   }
 
   getNewCpf() {
-    return this.http.get(`http://geradorapp.com/api/v1/cpf/generate?token=${this.tokenApi}`);
+    return this.http.get(`http://geradorapp.com/api/v1/cpf/generate?token=${this.tokenApi}`).pipe(
+      map(r => {
+        return r['data'];
+      }),
+      catchError(err => throwError(err))
+    );
   }
 
   validaCpf(cpf) {
@@ -31,7 +35,12 @@ export class ConsultaService {
   }
 
   getNewCnpj() {
-    return this.http.get(`http://geradorapp.com/api/v1/cnpj/generate?token=${this.tokenApi}`);
+    return this.http.get(`http://geradorapp.com/api/v1/cnpj/generate?token=${this.tokenApi}`).pipe(
+      map(r => {
+        return r['data'];
+      }),
+      catchError(err => throwError(err))
+    );
   }
 
   validaCnpj(cnpj) {
@@ -39,7 +48,12 @@ export class ConsultaService {
   }
 
   getNewCns() {
-    return this.http.get(`http://geradorapp.com/api/v1/cns/generate?token=${this.tokenApi}`);
+    return this.http.get(`http://geradorapp.com/api/v1/cns/generate?token=${this.tokenApi}`).pipe(
+      map(r => {
+        return r['data'];
+      }),
+      catchError(err => throwError(err))
+    );
   }
 
   validaCns(cns) {

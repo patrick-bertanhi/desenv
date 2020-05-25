@@ -1,23 +1,23 @@
 <app-header [perfil]="perfilBtn"></app-header>
 
-<div class="row rowGerador">
+<div class="row rowGerador" [formGroup]="formGerador">
   <button
   (click)="onCreateCpf()"
   mat-raised-button color="primary" [class.spinner]="loading" [disabled]="loading"
   >Gerar Cpf</button>
-  <input [(ngModel)]="inputCpf" placeholder="Cpf gerado" [disabled]="disabledCpf">
+  <input  formControlName="cpf" placeholder="Cpf gerado">
 
 
   <button
-  mat-raised-button color="primary"
+  mat-raised-button color="secundary"
   (click)="onCreateCnpj()"
   >Gerar Cnpj</button>
-  <input [(ngModel)]="inputCnpj" placeholder="Cnpj gerado" [disabled]="disabledCnpj">
+  <input  formControlName="cnpj"  placeholder="Cnpj gerado">
 
 
   <button
-  mat-raised-button color="primary"
+  mat-raised-button color="accent"
   (click)="onCreateCns()"
   >Gerar Cns</button>
-  <input [(ngModel)]="inputCns" placeholder="Cns gerado" [disabled]="disabledCns">
+  <input  formControlName="cns" placeholder="Cns gerado">
 </div>

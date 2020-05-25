@@ -1,22 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { ConsultaService } from '../shared/service/consulta.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../state';
+import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+import * as fromGerador from '../state/gerador';
+
 
 @Component({
   selector: 'app-gerador',
   templateUrl: './gerador.component.html',
   styleUrls: ['./gerador.component.css']
 })
-export class GeradorComponent implements OnInit {
+export class GeradorComponent implements OnInit, OnDestroy {
+// tslint:disable
+  private subscription = new Subscription();
+
+  formGerador: FormGroup;
 
   loading = false;
-
-  disabledCpf = true;
-  disabledCnpj = true;
-  disabledCns = true;
-
-  inputCpf;
-  inputCnpj;
-  inputCns;
 
   perfilBtn = {
     home: true,
@@ -27,56 +29,85 @@ export class GeradorComponent implements OnInit {
   };
 
   constructor(
-    private consultaService: ConsultaService
+    private formBuilder: FormBuilder,
+    private store$: Store<AppState>
   ) { }
 
   ngOnInit() {
+    this.createFormGerador();
+    this.createSubscrition();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  createSubscrition() {
+    this.subscribeToCpf();
+    this.subscribeToCnpj();
+    this.subscribeToCns();
+  }
+
+  createFormGerador(): void {
+    this.formGerador = this.formBuilder.group({
+      cpf: [{value: null, disabled: true}],
+      cnpj: [{value: null, disabled: true}],
+      cns: [{value: null, disabled: true}]
+    });
   }
 
   onCreateCpf() {
     this.loading = true;
-    this.consultaService.getNewCpf().subscribe(item => {
-      if (this.validaRetornoApi(item)) {
-        this.inputCpf = item;
-        this.inputCpf = this.inputCpf.data.number_formatted;
-        this.loading = false;
-      }
-    });
-
+    this.dispatchCpf();
   }
 
   onCreateCnpj() {
     this.loading = true;
-    this.consultaService.getNewCnpj().subscribe(item => {
-      if (this.validaRetornoApi(item)) {
-        this.inputCnpj = item;
-        this.inputCnpj = this.inputCnpj.data.number_formatted;
-        this.loading = false;
-      }
-    });
-
+    this.dispatchCnpj();
   }
 
   onCreateCns() {
     this.loading = true;
-    this.consultaService.getNewCns().subscribe(item => {
-      if (this.validaRetornoApi(item)) {
-        this.inputCns = item;
-        this.inputCns = this.inputCns.data.number_formatted;
-        this.loading = false;
-      }
-    });
-
+    this.dispatchCns();
   }
 
-  validaRetornoApi(erro) {
-    if (erro.status === '0') {
-      this.loading = false;
-      alert(erro.data.message);
-      return false;
-    }
-    this.loading = false;
-    return true;
+  subscribeToCpf() {
+    this.subscription.add(
+      this.store$.pipe(select(fromGerador.selectors.selectCpf)).subscribe(state => {
+        this.formGerador.get('cpf').setValue(state['number_formatted']);
+        this.loading = false;
+      })
+    );
+  }
+
+  subscribeToCnpj() {
+    this.subscription.add(
+      this.store$.pipe(select(fromGerador.selectors.selectCnpj)).subscribe(state => {
+        this.formGerador.get('cnpj').setValue(state['number_formatted']);
+        this.loading = false;
+      })
+    );
+  }
+
+  subscribeToCns() {
+    this.subscription.add(
+      this.store$.pipe(select(fromGerador.selectors.selectCns)).subscribe(state => {
+        this.formGerador.get('cns').setValue(state['number_formatted']);
+        this.loading = false;
+      })
+    );
+  }
+
+  dispatchCpf() {
+    this.store$.dispatch(new fromGerador.actions.GerarCpf());
+  }
+
+  dispatchCnpj() {
+    this.store$.dispatch(new fromGerador.actions.GerarCnpj());
+  }
+
+  dispatchCns() {
+    this.store$.dispatch(new fromGerador.actions.GerarCns());
   }
 
 }
