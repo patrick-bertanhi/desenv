@@ -1,28 +1,24 @@
 <app-header [perfil]="perfilBtn"></app-header>
 
-<div class="row rowGerador">
+<div class="row rowGerador" [formGroup]="formValidador">
   <button
   mat-raised-button color="primary"
   [class.spinner]="loading"
   [disabled]="loading"
   (click)="validarCpf()"
   >Validar Cpf</button>
-  <input [(ngModel)]="cpf" placeholder="Insira o cpf" mask="000.000.000-00">
+  <input formControlName="cpf" placeholder="Insira o cpf" mask="000.000.000-00">
 
   <button
   mat-raised-button color="primary"
-  [class.spinner]="loading"
-  [disabled]="loading"
   (click)="validarCnpj()"
   >Validar Cnpj</button>
-  <input [(ngModel)]="cnpj" placeholder="Insira o cnpj" mask="00.000.000/0000-00">
+  <input formControlName="cnpj" placeholder="Insira o cnpj" mask="00.000.000/0000-00">
 
   <button
   mat-raised-button color="primary"
-  [class.spinner]="loading"
-  [disabled]="loading"
   (click)="validarCns()"
   >Validar Cns</button>
-  <input [(ngModel)]="cns" maxlength="15" mask="000000000000000" placeholder="Insira o cns">
+  <input formControlName="cns" maxlength="15" mask="000000000000000" placeholder="Insira o cns">
 
 </div>

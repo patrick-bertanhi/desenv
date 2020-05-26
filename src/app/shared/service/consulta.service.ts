@@ -31,7 +31,12 @@ export class ConsultaService {
   }
 
   validaCpf(cpf) {
-    return this.http.get(`http://geradorapp.com/api/v1/cpf/validate/${cpf}?token=${this.tokenApi}`);
+    return this.http.get(`http://geradorapp.com/api/v1/cpf/validate/${cpf}?token=${this.tokenApi}`).pipe(
+      map(r => {
+        return r['data'];
+      }),
+      catchError(err => throwError(err))
+    );
   }
 
   getNewCnpj() {
@@ -44,7 +49,12 @@ export class ConsultaService {
   }
 
   validaCnpj(cnpj) {
-    return this.http.get(`http://geradorapp.com/api/v1/cnpj/validate/${cnpj}?token=${this.tokenApi}`);
+    return this.http.get(`http://geradorapp.com/api/v1/cnpj/validate/${cnpj}?token=${this.tokenApi}`).pipe(
+      map(r => {
+        return r['data'];
+      }),
+      catchError(err => throwError(err))
+    );
   }
 
   getNewCns() {
@@ -57,7 +67,12 @@ export class ConsultaService {
   }
 
   validaCns(cns) {
-    return this.http.get(`http://geradorapp.com/api/v1/cns/validate/${cns}?token=${this.tokenApi}`);
+    return this.http.get(`http://geradorapp.com/api/v1/cns/validate/${cns}?token=${this.tokenApi}`).pipe(
+      map(r => {
+        return r['data'];
+      }),
+      catchError(err => throwError(err))
+    );
   }
 
   listarCidadesBr() {

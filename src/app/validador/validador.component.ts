@@ -1,12 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { ConsultaService } from '../shared/service/consulta.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../state';
+import { Subscription } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+import * as fromValidador from '../state/validador';
+
 
 @Component({
   selector: 'app-validador',
   templateUrl: './validador.component.html',
   styleUrls: ['./validador.component.css']
 })
-export class ValidadorComponent implements OnInit {
+export class ValidadorComponent implements OnInit, OnDestroy {
+  // tslint:disable
+  private subscription = new Subscription();
+
+  formValidador: FormGroup;
 
   loading = false;
 
@@ -18,71 +28,110 @@ export class ValidadorComponent implements OnInit {
     validador: false
   };
 
-  cpf: string;
-  cns: string;
-  cnpj: string;
-
-
-  msgCpf: any;
-  msgCns: any;
-  msgCnpj: any;
-
   constructor(
-    private consultaService: ConsultaService
+    private formBuilder: FormBuilder,
+    private store$: Store<AppState>
   ) { }
 
   ngOnInit() {
+    this.createFormValidador();
+    this.dispatchLimpandoCampos();
+    this.createSubscrition();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  createSubscrition() {
+    this.subscribeToCpf();
+    this.subscribeToCnpj();
+    this.subscribeToCns();
+  }
+
+  createFormValidador(): void {
+    this.formValidador = this.formBuilder.group({
+      cpf: [{value: null, disabled: false}],
+      cnpj: [{value: null, disabled: false}],
+      cns: [{value: null, disabled: false}]
+    });
   }
 
 
    validarCpf() {
-    if (this.cpf) {
-      this.validaCpf();
+    if (this.formValidador.get('cpf').value) {
+      this.dispatchValidaCpf();
     }
   }
 
   validarCnpj() {
-    if (this.cnpj) {
-      this.validaCnpj();
+    if (this.formValidador.get('cnpj').value) {
+      this.dispatchValidaCnpj();
     }
   }
 
   validarCns() {
-    if (this.cns) {
-      this.validaCns();
+    if (this.formValidador.get('cns').value) {
+      this.dispatchValidaCns();
     }
   }
 
-   validaCpf() {
-    this.loading = true;
-    this.consultaService.validaCpf(this.cpf).subscribe(item => {
-      this.validaRetornoApi(item);
-    });
+  subscribeToCpf() {
+    this.subscription.add(
+      this.store$.pipe(select(fromValidador.selectors.selectValidaCpf)).subscribe(state => {
+        this.loading = false;
+        if (state && state.message) {
+          this.validaRetornoApi(state);
+        }
+      })
+    );
   }
 
-   validaCnpj() {
-    this.loading = true;
-    this.consultaService.validaCnpj(this.cnpj).subscribe(item => {
-      this.validaRetornoApi(item);
-    });
+  subscribeToCnpj() {
+    this.subscription.add(
+      this.store$.pipe(select(fromValidador.selectors.selectValidaCnpj)).subscribe(state => {
+        this.loading = false;
+        if (state && state.message) {
+          this.validaRetornoApi(state);
+        }
+      })
+    );
   }
 
-   validaCns() {
+  subscribeToCns() {
+    this.subscription.add(
+      this.store$.pipe(select(fromValidador.selectors.selectValidaCns)).subscribe(state => {
+        this.loading = false;
+        if (state && state.message) {
+          this.validaRetornoApi(state);
+        }
+      })
+    );
+  }
+
+  dispatchValidaCpf() {
     this.loading = true;
-    this.consultaService.validaCns(this.cns).subscribe(item => {
-      this.validaRetornoApi(item);
-    });
+    this.store$.dispatch(new fromValidador.actions.ValidarCpf({cpf: this.formValidador.get('cpf').value}));
+  }
+
+  dispatchValidaCnpj() {
+    this.loading = true;
+    this.store$.dispatch(new fromValidador.actions.ValidarCnpj({cnpj: this.formValidador.get('cnpj').value}));
+  }
+
+  dispatchValidaCns() {
+    this.loading = true;
+    this.store$.dispatch(new fromValidador.actions.ValidarCns({cns: this.formValidador.get('cns').value}));
+  }
+
+  dispatchLimpandoCampos() {
+    this.store$.dispatch(new fromValidador.actions.LimparRegistros());
   }
 
   validaRetornoApi(retorno) {
-    if (retorno.status === '0') {
+    if (retorno) {
       this.loading = false;
-      alert(retorno.data.message);
-      return;
-    } else {
-      this.loading = false;
-      alert(retorno.data.message);
-      return;
+      alert(retorno.message);
     }
   }
 
