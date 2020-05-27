@@ -20,11 +20,13 @@ export class LoginEffects {
     ofType<actions.Login>(actions.LoginActionsTypes.LOGIN),
     switchMap(action =>
       this.loginService.validacaoLogin(action.payload.username, action.payload.password).pipe(
-        mergeMap(reponse => {
-          return [
-            new actions.LoginSuccess({ user: action.payload.username}),
-            new actions.RedirectPage()
-          ];
+        mergeMap(response => {
+          if (response) {
+            return [
+              new actions.LoginSuccess({ user: action.payload.username}),
+              new actions.RedirectPage()
+            ];
+          }
         }),
         catchError(() => EMPTY)
         )

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorService } from './behavior.service';
 import { Observable, of, observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class LoginService {
   password;
 
   logins;
-  constructor(private route: Router, private behaviorService: BehaviorService) { }
+  constructor(private route: Router, private snackBar: MatSnackBar) { }
 
    validacaoLogin(user, password) {
     this.usersService();
@@ -26,6 +27,7 @@ export class LoginService {
       return of(true);
     } else {
       this.loginInvalido();
+      return of(false);
     }
   }
 
@@ -48,6 +50,9 @@ export class LoginService {
   }
 
   loginInvalido() {
-    alert('Login ou senha invalido(os)');
+
+    const msg = 'Login ou senha invalido(os)';
+    const fechar = 'x';
+    this.snackBar.open(msg, fechar);
   }
 }

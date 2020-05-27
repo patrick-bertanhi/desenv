@@ -7,7 +7,7 @@ import { TableComponent } from './components/ui/table/table.component';
 import { HeaderTranslateComponent } from './components/ui/header-translate/header-translate.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatListModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
@@ -16,12 +16,15 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NgxMaskModule } from 'ngx-mask';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { MainNavComponent } from './components/ui/main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     TableComponent,
-    HeaderTranslateComponent
+    HeaderTranslateComponent,
+    MainNavComponent
   ],
   exports: [
     CommonModule,
@@ -42,7 +45,8 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
     HeaderTranslateComponent,
     NgSelectModule,
     TranslateModule,
-    NgxMaskModule
+    NgxMaskModule,
+    MainNavComponent
   ],
   imports: [
     CommonModule,
@@ -61,6 +65,8 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
     SharedPipesModule,
     TranslateModule,
     NgxMaskModule.forRoot(),
+    LayoutModule,
+    MatListModule,
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}

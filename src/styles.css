@@ -27,6 +27,10 @@ img {
   margin-left: 35%;
 }
 
+body {
+  margin: 0;
+}
+
 .btnHeader {
   padding-left: 30%;
 }
