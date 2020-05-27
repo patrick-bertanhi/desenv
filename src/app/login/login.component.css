@@ -19,6 +19,7 @@
 
 .positionAbs {
   position: absolute;
+  margin-left: -30px;
 }
 .login-page {
   position: absolute;

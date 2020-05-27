@@ -2,39 +2,25 @@
     <div class="row row-form-login">
       <form role="form" class="login-form" [formGroup]="formLogin" (ngSubmit)="onLoggedin()">
         <h1 class="titleLogin">Login</h1>
-        <p>**Login: admin</p>
-        <p>**Senha: admin</p>
+        <p>**{{'User' | translate}}: admin</p>
+        <p>**{{'Password' | translate}}: admin</p>
 
         <div class="inpBtnLogin">
-          <div>
-            <input
-              type="text"
-              required
-              minlength="4"
-              id="user-icon"
-              name="user"
-              [placeholder]="'user'"
-              formControlName="user"
-            />
-          </div>
+          <mat-form-field class="example-full-width">
+            <mat-label>{{'User' | translate}}</mat-label>
+            <input formControlName="user" required matInput placeholder="{{'User' | translate}}" value="">
+          </mat-form-field>
 
-          <div>
-            <input
-              type="password"
-              required
-              minlength="4"
-              [placeholder]="'password'"
-              id="password-icon"
-              name="password"
-              formControlName="password"
-            />
-          </div>
+          <mat-form-field class="example-full-width">
+            <mat-label>{{'Password' | translate}}</mat-label>
+            <input formControlName="password" required matInput placeholder="{{'Password' | translate}}" value="">
+          </mat-form-field>
 
           <div class="btnLogin">
             <button
             mat-raised-button color="primary"
             type="submit" class="positionAbs button">
-              Login
+              {{'Login' | translate}}
             </button>
           </div>
         </div>

@@ -1,0 +1,11 @@
+{
+  "Login":"Acessar",
+  "User":"Usuário",
+  "Password": "Senha",
+  "Welcome to my project":"Bem vindo ao meu projeto",
+  "One project only to training": "Um projeto apenas para treinamento",
+  "My resume": "Meu curriculo",
+  "Search address by zip code": "Buscar endereço por cep",
+  "Generate CPF/CNPJ/CNS": "Gerar CPF/CNPJ/CNS",
+  "Authenticate CPF/CNPJ/CNS": "Validar CPF/CNPJ/CNS"
+}

@@ -1,6 +1,7 @@
 import { ConsultaService } from './shared/service/consulta.service';
 import { BehaviorService } from './shared/service/behavior.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EnderecosListComponent } from './enderecos-list/enderecos-list.component';
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TableComponent } from './shared/components/ui/table/table.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { GeradorComponent } from './gerador/gerador.component';
@@ -22,8 +23,20 @@ import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 import { StateModule } from './state/state.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+import { HeaderTranslateComponent } from './shared/components/ui/header-translate/header-translate.component';
 
 
+registerLocaleData(ptBr);
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +47,8 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
     TableComponent,
     GeradorComponent,
     ValidadorComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderTranslateComponent
   ],
   imports: [
     BrowserModule,
@@ -44,12 +58,22 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     NgxMaskModule.forRoot(),
     StateModule,
     MatSliderModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatMenuModule,
+    MatIconModule,
+    MatInputModule,
+    HttpClientModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
 
   ],
   exports: [

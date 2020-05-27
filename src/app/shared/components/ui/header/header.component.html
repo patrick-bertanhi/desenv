@@ -11,7 +11,7 @@ mat-raised-button color="primary"
 <button
 mat-raised-button color="primary"
 *ngIf="perfil.busca" class="button" (click)="onRedirectBuscaEnd()"
->Buscar endereços por cep
+>{{'Search address by zip code' | translate}}
 </button>
 <!-- <button
 mat-raised-button color="primary"
@@ -21,12 +21,12 @@ mat-raised-button color="primary"
 <button
 mat-raised-button color="primary"
 *ngIf="perfil.gerador"class="button" (click)="onRedirectGerador()"
->Gerar CPF/CNPJ/CNS
+>{{'Generate CPF/CNPJ/CNS' | translate}}
 </button>
 <button
 mat-raised-button color="primary"
 *ngIf="perfil.validador" class="button" (click)="onRedirectValid()"
->Validar CPF/CNPJ/CNS
+>{{'Authenticate CPF/CNPJ/CNS' | translate}}
 </button>
 </div>
 
