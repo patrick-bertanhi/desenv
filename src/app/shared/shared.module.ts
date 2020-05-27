@@ -11,6 +11,7 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS} from '@angular/material/snack-bar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NgxMaskModule } from 'ngx-mask';
@@ -34,6 +35,7 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
     MatInputModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatSnackBarModule,
     SharedPipesModule,
     HeaderComponent,
     TableComponent,
@@ -54,10 +56,14 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
     MatInputModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatSnackBarModule,
     NgSelectModule,
     SharedPipesModule,
     TranslateModule,
     NgxMaskModule.forRoot(),
+  ],
+  providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
   ]
 })
 export class SharedModule {

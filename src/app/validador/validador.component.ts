@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import * as fromValidador from '../state/validador';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class ValidadorComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    private store$: Store<AppState>
+    private store$: Store<AppState>,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -131,7 +133,7 @@ export class ValidadorComponent implements OnInit, OnDestroy {
   validaRetornoApi(retorno) {
     if (retorno) {
       this.loading = false;
-      alert(retorno.message);
+      this.snackBar.open(retorno.message, 'x');
     }
   }
 

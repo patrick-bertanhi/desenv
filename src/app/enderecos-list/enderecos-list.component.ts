@@ -1,6 +1,7 @@
 import { BehaviorService } from '../shared/service/behavior.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-enderecos-list',
@@ -24,7 +25,7 @@ export class EnderecosListComponent implements OnInit, OnDestroy {
   };
   enderecos;
   delete = false;
-  constructor(private behaviorService: BehaviorService) { }
+  constructor(private behaviorService: BehaviorService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.buscarEnderecos();
@@ -35,6 +36,10 @@ export class EnderecosListComponent implements OnInit, OnDestroy {
       this.behaviorSubjectSubscription.unsubscribe();
 
     }
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
   }
 
   onClickMenu() {

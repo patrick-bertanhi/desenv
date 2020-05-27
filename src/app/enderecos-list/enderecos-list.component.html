@@ -9,10 +9,11 @@
                (closed)="events.push('close!')">
 
     <button mat-raised-button color="primary">Menu</button>
+    <button (click)="openSnackBar('Valor inválido', 'x')" mat-raised-button color="sencudary" >Modal</button>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-icon-button (click)="onClickMenu()"><mat-icon>menu</mat-icon></mat-icon-button>
+    <mat-icon-button id="cursor-pointer" (click)="onClickMenu()"><mat-icon>menu</mat-icon></mat-icon-button>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

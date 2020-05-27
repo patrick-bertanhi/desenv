@@ -31,6 +31,10 @@ img {
   padding-left: 30%;
 }
 
+#cursor-pointer {
+  cursor: pointer;
+}
+
 .button {
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
