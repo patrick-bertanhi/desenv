@@ -26,6 +26,8 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
@@ -66,7 +68,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatMenuModule,
     MatIconModule,
     MatInputModule,
+    MatSidenavModule,
     HttpClientModule,
+    MatToolbarModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

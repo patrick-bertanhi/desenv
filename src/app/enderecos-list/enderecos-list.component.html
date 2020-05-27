@@ -1,7 +1,19 @@
-<app-header [perfil]="perfilBtn"></app-header>
+<!-- <app-header [perfil]="perfilBtn"></app-header>
 
 <app-table [list]="enderecos" [canDelete]= "delete"></app-table>
 
+ -->
 
+ <mat-sidenav-container class="example-container" >
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+               (closed)="events.push('close!')">
+
+    <button mat-raised-button color="primary">Menu</button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-icon-button (click)="onClickMenu()"><mat-icon>menu</mat-icon></mat-icon-button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 

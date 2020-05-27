@@ -8,8 +8,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./enderecos-list.component.css']
 })
 export class EnderecosListComponent implements OnInit, OnDestroy {
-
+  opened = false;
   behaviorSubjectSubscription: Subscription;
+  events: string[] = [];
+
+  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 
 
   perfilBtn = {
@@ -32,6 +35,10 @@ export class EnderecosListComponent implements OnInit, OnDestroy {
       this.behaviorSubjectSubscription.unsubscribe();
 
     }
+  }
+
+  onClickMenu() {
+    this.opened = !this.opened;
   }
 
    async buscarEnderecos() {

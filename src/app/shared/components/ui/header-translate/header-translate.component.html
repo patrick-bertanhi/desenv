@@ -1,5 +1,7 @@
-<button mat-button [matMenuTriggerFor]="menu">Translate</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="useLanguage('en')">English</button>
-  <button mat-menu-item (click)="useLanguage('pt')">Portuguese</button>
-</mat-menu>
+<div class="btn-translate">
+  <button mat-button [matMenuTriggerFor]="menu">Translate</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="useLanguage('en')">English</button>
+    <button mat-menu-item (click)="useLanguage('pt')">Portuguese</button>
+  </mat-menu>
+</div>
