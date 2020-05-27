@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { ConsultaService } from './shared/service/consulta.service';
 import { BehaviorService } from './shared/service/behavior.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,8 +9,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './shared/components/ui/header/header.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EnderecosListComponent } from './enderecos-list/enderecos-list.component';
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -21,17 +20,9 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './shared/service/login.service';
 import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 import { StateModule } from './state/state.module';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatButtonModule, MatCheckboxModule } from '@angular/material';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
-import { HeaderTranslateComponent } from './shared/components/ui/header-translate/header-translate.component';
 
 
 registerLocaleData(ptBr);
@@ -43,34 +34,19 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     HomeComponent,
-    HeaderComponent,
     EnderecosListComponent,
     BuscaEnderecosComponent,
-    TableComponent,
     GeradorComponent,
     ValidadorComponent,
-    LoginComponent,
-    HeaderTranslateComponent
+    LoginComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    NgxMaskModule.forRoot(),
     StateModule,
-    MatSliderModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatMenuModule,
-    MatIconModule,
-    MatInputModule,
-    MatSidenavModule,
     HttpClientModule,
-    MatToolbarModule,
+    SharedModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -81,11 +57,13 @@ export function HttpLoaderFactory(http: HttpClient) {
 
   ],
   exports: [
+    BrowserAnimationsModule,
     HeaderComponent,
     EnderecosListComponent,
     BuscaEnderecosComponent,
     TableComponent,
-    NgxMaskModule
+    NgxMaskModule,
+    SharedModule
   ],
   providers: [
   ConsultaService,
@@ -95,4 +73,4 @@ export function HttpLoaderFactory(http: HttpClient) {
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
