@@ -31,10 +31,6 @@ export class LoginService {
     }
   }
 
-  setUser(userData, isLogged): void {
-    sessionStorage.setItem('userData', JSON.stringify(userData));
-    sessionStorage.setItem('isLoggedIn', JSON.stringify(isLogged));
-  }
 
   usersService() {
     this.logins = [
@@ -50,9 +46,33 @@ export class LoginService {
   }
 
   loginInvalido() {
-
     const msg = 'Login ou senha invalido(os)';
     const fechar = 'x';
     this.snackBar.open(msg, fechar);
+  }
+
+  getUser() {
+    const userData: any = sessionStorage.getItem('userData');
+    if (userData) {
+      const parsed: any = JSON.parse(userData);
+      return {
+        user: parsed.user
+      };
+    }
+  }
+
+  getUserName(): string {
+    const userData = this.getUser();
+    if (userData) { return userData.user; }
+  }
+
+  setUser(userData, isLogged): void {
+    sessionStorage.setItem('userData', JSON.stringify(userData));
+    sessionStorage.setItem('isLoggedIn', JSON.stringify(isLogged));
+  }
+
+  clearUser(): void {
+    sessionStorage.removeItem('userData');
+    sessionStorage.removeItem('isLoggedIn');
   }
 }

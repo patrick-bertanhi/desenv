@@ -10,9 +10,7 @@ export interface LoginState {
 }
 
 export const initialState: LoginState = {
-  user: {
-    userName: ''
-  },
+  user: null,
   isLoggedIn: null
 };
 
@@ -24,6 +22,10 @@ export function loginReducer(state = initialState, action: LoginActions): LoginS
         user: action.payload.user,
         isLoggedIn: true
       };
+    }
+
+    case LoginActionsTypes.LOGOUT_SUCCESS: {
+      return initialState;
     }
 
     default:

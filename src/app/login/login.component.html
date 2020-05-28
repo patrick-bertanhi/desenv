@@ -6,26 +6,34 @@
         <p>**{{'Password' | translate}}: admin</p>
 
         <div class="inpBtnLogin">
-          <mat-form-field class="example-full-width">
-            <mat-label>{{'User' | translate}}</mat-label>
-            <input formControlName="user" required matInput placeholder="{{'User' | translate}}" value="">
-          </mat-form-field>
+          <div class="row">
+            <mat-form-field class="example-full-width">
+              <mat-label>{{'User' | translate}}</mat-label>
+              <input formControlName="user" required matInput placeholder="{{'User' | translate}}" value="">
+            </mat-form-field>
+          </div>
 
-          <mat-form-field class="example-full-width">
-            <mat-label>{{'Password' | translate}}</mat-label>
-            <input formControlName="password" required matInput placeholder="{{'Password' | translate}}" value="">
-          </mat-form-field>
+          <div class="row">
+            <mat-form-field class="example-full-width">
+              <mat-label>{{'Password' | translate}}</mat-label>
+              <input type="password" formControlName="password" required matInput placeholder="{{'Password' | translate}}" value="">
+            </mat-form-field>
+          </div>
 
-          <div class="btnLogin">
-            <button
-            mat-raised-button color="primary"
-            type="submit" class="positionAbs button">
-              {{'Login' | translate}}
-            </button>
+          <div class="row">
+            <div class="btnLogin">
+              <button
+              mat-raised-button color="primary"
+              type="submit" class="positionAbs button">
+                {{'Login' | translate}}
+              </button>
+            </div>
           </div>
         </div>
       </form>
     </div>
 
+
+    <!-- <fa-icon [icon]="faUser"> </fa-icon> -->
+
 </div>
-<!-- <mat-slider min="1" max="100" step="1" value="1"></mat-slider> -->

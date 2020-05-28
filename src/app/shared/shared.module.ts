@@ -18,6 +18,10 @@ import { NgxMaskModule } from 'ngx-mask';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { MainNavComponent } from './components/ui/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faHistory, faAngleDown, faChevronDown, faUser, faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +50,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     NgSelectModule,
     TranslateModule,
     NgxMaskModule,
-    MainNavComponent
+    MainNavComponent,
+    FontAwesomeModule
   ],
   imports: [
     CommonModule,
@@ -67,6 +72,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     NgxMaskModule.forRoot(),
     LayoutModule,
     MatListModule,
+    FontAwesomeModule
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
@@ -77,6 +83,7 @@ export class SharedModule {
     this.selectConfig.notFoundText = this.translateService.instant('No items found');
     this.selectConfig.placeholder = this.translateService.instant('Select');
 
-    // library.add(faCity, faChevronDown, faChevronRight, faChevronLeft, faBars, faArrowLeft, faPencilAlt);
+    library.add(faHistory, faChevronDown, faAngleDown, faUser, faCoffee);
+
   }
 }

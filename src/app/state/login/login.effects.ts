@@ -33,11 +33,34 @@ export class LoginEffects {
     )
   );
 
+  @Effect()
+  logout = this.actions$.pipe(
+    ofType<actions.Logout>(actions.LoginActionsTypes.LOGOUT),
+    switchMap(() => {
+      const userData = this.loginService.getUser();
+      if (userData) {this.loginService.clearUser(); }
+      return [
+        new actions.LogoutSuccess(),
+        new actions.RedirectLogout()
+      ];
+    })
+  );
+
+
+
   @Effect({ dispatch: false })
   redirecionarPage = this.actions$.pipe(
     ofType<actions.RedirectPage>(actions.LoginActionsTypes.REDIRECT),
     tap(() => {
       this.route.navigate(['/home']);
+    })
+  );
+
+  @Effect({ dispatch: false })
+  redirecionarLogout = this.actions$.pipe(
+    ofType<actions.RedirectLogout>(actions.LoginActionsTypes.REDIRECT_LOGOUT),
+    tap(() => {
+      this.route.navigate(['/login']);
     })
   );
 
