@@ -23,6 +23,7 @@ import { StateModule } from './state/state.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
+import { AuthModule } from './auth/auth.module';
 
 
 registerLocaleData(ptBr);
@@ -41,6 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent
   ],
   imports: [
+    AuthModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
