@@ -8,41 +8,33 @@ import { MatSnackBar } from '@angular/material';
   providedIn: 'root'
 })
 export class LoginService {
-
   user;
   password;
+  logins = [
+    {
+      user: 'ADMIN',
+      password: 'ADMIN'
+    },
+    {
+      user: 'MARLAK',
+      password: '12345'
+    }
+  ];
 
-  logins;
   constructor(private route: Router, private snackBar: MatSnackBar) { }
 
-   validacaoLogin(user, password) {
-    this.usersService();
+  validacaoLogin(user, password): Observable<boolean> {
     this.user = user.trim().toUpperCase();
     this.password = atob(password).trim().toUpperCase();
-    this.logins = this.logins.filter(elem => {
-      return elem.password === this.password && elem.user === this.user;
-      });
-    if (this.logins.length > 0) {
-      this.setUser({user: this.logins[0].user}, true);
+    this.user = this.logins.find(account => account.password === this.password && account.user === this.user);
+
+    if (this.user) {
+      this.setUser({ user: this.user.user }, true);
       return of(true);
-    } else {
-      this.loginInvalido();
-      return of(false);
     }
-  }
 
-
-  usersService() {
-    this.logins = [
-      {
-        user: 'ADMIN',
-        password: 'ADMIN'
-      },
-      {
-        user: 'MARLAK',
-        password: '12345'
-      }
-    ];
+    this.loginInvalido();
+      return of(false);
   }
 
   loginInvalido() {

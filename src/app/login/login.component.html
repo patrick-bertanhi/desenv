@@ -1,39 +1,34 @@
 <div class="login-page" [@routerTransition]>
-    <div class="row row-form-login">
-      <form role="form" class="login-form" [formGroup]="formLogin" (ngSubmit)="onLoggedin()">
-        <h1 class="titleLogin">Login</h1>
-        <p>**{{'User' | translate}}: admin</p>
-        <p>**{{'Password' | translate}}: admin</p>
+  <div class="row row-form-login">
+    <form role="form" class="login-form" [formGroup]="formLogin" (ngSubmit)="onLoggedin()">
+      <div class="login-page__credentials">
+        <span><strong>{{'User' | translate}}:</strong> admin</span>
+        <span><strong>{{'Password' | translate}}:</strong> admin</span>
+      </div>
 
-        <div class="inpBtnLogin">
-          <div class="row">
-            <mat-form-field class="example-full-width">
-              <mat-label>{{'User' | translate}}</mat-label>
-              <input formControlName="user" required matInput placeholder="{{'User' | translate}}" value="">
-            </mat-form-field>
-          </div>
+      <h1 class="login-page__title">Login</h1>
 
-          <div class="row">
-            <mat-form-field class="example-full-width">
-              <mat-label>{{'Password' | translate}}</mat-label>
-              <input type="password" formControlName="password" required matInput placeholder="{{'Password' | translate}}" value="">
-            </mat-form-field>
-          </div>
+      <div class="login-page-content">
+        <mat-form-field class="example-full-width login-page-content__input">
+          <mat-label>{{'User' | translate}}</mat-label>
+          <input formControlName="user" required matInput placeholder="{{'User' | translate}}" value="">
+        </mat-form-field>
 
-          <div class="row">
-            <div class="btnLogin">
-              <button
-              mat-raised-button color="primary"
-              type="submit" class="positionAbs button">
-                {{'Login' | translate}}
-              </button>
-            </div>
-          </div>
+        <mat-form-field class="example-full-width login-page-content__input">
+          <mat-label>{{'Password' | translate}}</mat-label>
+          <input type="password" formControlName="password" required matInput placeholder="{{'Password' | translate}}" value="">
+        </mat-form-field>
+
+        <div class="login-page-content__btn">
+          <button
+            mat-raised-button color="primary"
+            type="submit"
+            class="button"
+          >
+            {{'Login' | translate}}
+          </button>
         </div>
-      </form>
-    </div>
-
-
-    <!-- <fa-icon [icon]="faUser"> </fa-icon> -->
-
+      </div>
+    </form>
+  </div>
 </div>

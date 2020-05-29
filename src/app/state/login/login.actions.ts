@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 export enum LoginActionsTypes {
   LOGIN = '[Login] Login',
-  LOGIN_SUCCESS = '[Login] Login sucesso',
+  LOGIN_SUCCESS = '[Login] Login success',
 
   LOGOUT = '[Login] Logout',
   LOGOUT_SUCCESS = '[Login] Logout success',

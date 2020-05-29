@@ -10,7 +10,6 @@ import { AppState } from '../state';
 
 import * as fromLogin from '../state/login';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,22 +18,20 @@ import * as fromLogin from '../state/login';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   formLogin: FormGroup;
+  userLogged: boolean;
   faUser = faUser;
 
   private subscription = new Subscription();
-
-  userLogged: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
     private store$: Store<AppState>,
     private snackBar: MatSnackBar
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.createLoginForm();
     this.createSubscriptions();
-
   }
 
   ngOnDestroy() {
@@ -45,58 +42,60 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscribeToLogin();
   }
 
-  subscribeToLogin() {
+  private subscribeToLogin(): void {
     this.subscription.add(
-      this.store$.pipe(select(fromLogin.selectors.selectUserLog)).subscribe(state => {
+      this.store$.pipe(select(fromLogin.selectors.selectUserLoggedIn)).subscribe(state => {
         this.userLogged = state ? state : false;
       })
     );
   }
 
-  createLoginForm(): void {
+  private createLoginForm(): void {
     this.formLogin = this.formBuilder.group({
       user: [null, [Validators.required]],
       password: [null, [Validators.required]]
     });
   }
 
-  onLoggedin() {
-    if (this.emptyError()) {
-      this.dispatchLogin();
-      this.clearInputs();
-    }
+  onLoggedin(): void {
+    if (!this.emptyError())  return;
+
+    this.login();
+    this.clearInputs();
   }
 
-  clearInputs() {
+  private clearInputs(): void {
     this.formLogin.patchValue({
       user: '',
       password: ''
     });
   }
 
-  dispatchLogin() {
+  private login(): void {
     const user = this.formLogin.value;
-    this.store$.dispatch(new fromLogin.actions.Login({ username: user.user,
-    password: btoa(user.password) }));
+    this.store$.dispatch(new fromLogin.actions.Login({ username: user.user, password: btoa(user.password) }));
   }
 
-  emptyError() {
+  private emptyError(): boolean {
     const user = this.formLogin.value;
+
+    if (user.user && user.password) {
+      return true;
+    }
+
     if ((!user.user || user.user === '') && (!user.password || user.password === '')) {
       this.snackBar.open('Insira o usuario(a) e a senha');
-      return false;
-     }
+    }
 
     if (!user.user || user.user === '') {
       this.snackBar.open('Insira o Usuario(a)');
-      return false;
     }
 
     if (!user.password || user.password === '') {
       this.snackBar.open('Insira a senha');
-      return false;
     }
-    return true;
+
+    return false;
   }
 
 }

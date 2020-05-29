@@ -1,4 +1,4 @@
-.spacer {
-  display: flex;
-  padding-left: 85%;
+.header-translate {
+  text-align: right;
+  padding-right: 0.5vw;
 }
