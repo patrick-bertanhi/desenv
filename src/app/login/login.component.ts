@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onLoggedin(): void {
-    if (!this.emptyError())  return;
+    if (!this.emptyError()) {return; }
 
     this.login();
     this.clearInputs();
