@@ -24,6 +24,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { AuthModule } from './auth/auth.module';
+import { NotFoundModule } from './not-found/not-found.module';
 
 
 registerLocaleData(ptBr);
@@ -43,6 +44,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     AuthModule,
+    NotFoundModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,

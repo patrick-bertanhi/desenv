@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginResolver } from './resolver/login.resolver';
 import { LoginComponent } from './login/login.component';
 import { ValidadorComponent } from './validador/validador.component';
@@ -42,7 +43,12 @@ const routes: Routes = [
   component: ValidadorComponent,
   resolve: { aut: LoginResolver }
 
-}
+},
+{
+  path: 'not-found',
+  component: NotFoundComponent
+},
+{ path: '**', redirectTo: 'not-found' }
 ];
 
 @NgModule({

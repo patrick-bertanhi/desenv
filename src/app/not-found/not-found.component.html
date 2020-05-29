@@ -1,0 +1,13 @@
+<div [@routerTransition] class="background-image-rectangles">
+  <div class="container-fluid d-flex justify-content-between">
+    <div class="row w-100 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-lg-6 text-center">
+        <h1 class="error-message">{{ 'Ops! Something went wrong :(' | translate }}</h1>
+        <p class="mt-2">{{ 'Unfortunately we were unable to access this page' | translate }}</p>
+        <div class="col-sm-6 offset-sm-3 no-gutter mt-4">
+          <a class="btn btn-login rounded-btn btn-block" [routerLink]="['/']"> {{ 'Back to home' | translate }} </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

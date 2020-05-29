@@ -7,6 +7,9 @@
   "My resume": "My resume",
   "Search address by zip code": "Search address by zip code",
   "Generate CPF/CNPJ/CNS":"Generate CPF/CNPJ/CNS",
-  "Authenticate CPF/CNPJ/CNS":"Authenticate CPF/CNPJ/CNS"
+  "Authenticate CPF/CNPJ/CNS":"Authenticate CPF/CNPJ/CNS",
+  "Ops! Something went wrong :(": "Hoppla! Etwas ist schief gelaufen :(",
+  "Unfortunately we were unable to access this page": "Leider konnten wir nicht auf diese Seite zugreifen",
+  "Back to home":"Back to home"
 
 }
