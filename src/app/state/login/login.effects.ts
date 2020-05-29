@@ -20,16 +20,12 @@ export class LoginEffects {
     ofType<actions.Login>(actions.LoginActionsTypes.LOGIN),
     switchMap(action =>
       this.loginService.validacaoLogin(action.payload.username, action.payload.password).pipe(
-        mergeMap(response => {
-          if (response) {
-            return [
-              new actions.LoginSuccess({ user: action.payload.username}),
-              new actions.RedirectPage()
-            ];
-          }
-        }),
+        mergeMap(response => [
+          new actions.LoginSuccess({ user: action.payload.username}),
+          new actions.RedirectPage()
+        ]),
         catchError(() => EMPTY)
-        )
+      )
     )
   );
 
@@ -38,7 +34,11 @@ export class LoginEffects {
     ofType<actions.Logout>(actions.LoginActionsTypes.LOGOUT),
     switchMap(() => {
       const userData = this.loginService.getUser();
-      if (userData) {this.loginService.clearUser(); }
+
+      if (userData) {
+        this.loginService.clearUser();
+      }
+
       return [
         new actions.LogoutSuccess(),
         new actions.RedirectLogout()
