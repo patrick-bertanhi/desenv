@@ -5,7 +5,7 @@ import { catchError, map, switchMap, delay, tap, mergeMap } from 'rxjs/operators
 import { Router } from '@angular/router';
 
 import * as actions from './login.actions';
-import { LoginService } from 'src/app/shared/service/login.service';
+import { LoginService } from 'src/app/login/services/login.service';
 
 @Injectable()
 export class LoginEffects {

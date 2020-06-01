@@ -11,12 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 
 const routes: Routes = [
-{ path: '',
-  component: LoginComponent
-},
+{ path: '', redirectTo: 'login', pathMatch: 'full' },
 {
   path: 'login',
-  component: LoginComponent,
+  loadChildren: './login/login.module#LoginModule'
 },
 {
   path: 'home',

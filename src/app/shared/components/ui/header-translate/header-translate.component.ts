@@ -3,7 +3,7 @@ import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../../state';
 import { Subscription } from 'rxjs';
-import { LoginService } from 'src/app/shared/service/login.service';
+import { LoginService } from 'src/app/login/services/login.service';
 
 import * as fromLogin from '../../../../state/login';
 

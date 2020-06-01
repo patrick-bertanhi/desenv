@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorService } from './behavior.service';
 import { Observable, of, observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 
@@ -34,7 +33,7 @@ export class LoginService {
     }
 
     this.loginInvalido();
-      return of(false);
+    return of(false);
   }
 
   loginInvalido() {

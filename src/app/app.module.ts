@@ -1,3 +1,4 @@
+import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
 import { ConsultaService } from './shared/service/consulta.service';
 import { BehaviorService } from './shared/service/behavior.service';
@@ -16,8 +17,6 @@ import { TableComponent } from './shared/components/ui/table/table.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { GeradorComponent } from './gerador/gerador.component';
 import { ValidadorComponent } from './validador/validador.component';
-import { LoginComponent } from './login/login.component';
-import { LoginService } from './shared/service/login.service';
 import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 import { StateModule } from './state/state.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -39,8 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     EnderecosListComponent,
     BuscaEnderecosComponent,
     GeradorComponent,
-    ValidadorComponent,
-    LoginComponent
+    ValidadorComponent
   ],
   imports: [
     AuthModule,
@@ -72,7 +70,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
   ConsultaService,
   BehaviorService,
-  LoginService,
   AuthGuardService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
