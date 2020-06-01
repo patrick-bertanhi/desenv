@@ -1,10 +1,8 @@
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginResolver } from './resolver/login.resolver';
-import { LoginComponent } from './login/login.component';
 import { ValidadorComponent } from './validador/validador.component';
 import { GeradorComponent } from './gerador/gerador.component';
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
-import { EnderecosListComponent } from './enderecos-list/enderecos-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -17,14 +15,13 @@ const routes: Routes = [
   loadChildren: './login/login.module#LoginModule'
 },
 {
+  path: 'features',
+  loadChildren: './features/features.module#FeaturesModule'
+},
+{
   path: 'home',
   component: HomeComponent,
   canActivate: [AuthGuardService]
-},
-{
-  path: 'enderecos',
-  component: EnderecosListComponent,
-  resolve: { aut: LoginResolver }
 },
 {
   path: 'busca-enderecos',

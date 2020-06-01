@@ -1,4 +1,3 @@
-import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
 import { ConsultaService } from './shared/service/consulta.service';
 import { BehaviorService } from './shared/service/behavior.service';
@@ -10,7 +9,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './shared/components/ui/header/header.component';
-import { EnderecosListComponent } from './enderecos-list/enderecos-list.component';
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TableComponent } from './shared/components/ui/table/table.component';
@@ -35,7 +33,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     HomeComponent,
-    EnderecosListComponent,
     BuscaEnderecosComponent,
     GeradorComponent,
     ValidadorComponent
@@ -61,7 +58,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   exports: [
     BrowserAnimationsModule,
     HeaderComponent,
-    EnderecosListComponent,
     BuscaEnderecosComponent,
     TableComponent,
     NgxMaskModule,

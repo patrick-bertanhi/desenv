@@ -1,4 +1,4 @@
-import { BehaviorService } from '../shared/service/behavior.service';
+import { BehaviorService } from '../../shared/service/behavior.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
