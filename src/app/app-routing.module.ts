@@ -5,7 +5,6 @@ import { GeradorComponent } from './gerador/gerador.component';
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 
 const routes: Routes = [
@@ -17,11 +16,6 @@ const routes: Routes = [
 {
   path: 'features',
   loadChildren: './features/features.module#FeaturesModule'
-},
-{
-  path: 'home',
-  component: HomeComponent,
-  canActivate: [AuthGuardService]
 },
 {
   path: 'busca-enderecos',

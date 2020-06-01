@@ -52,7 +52,7 @@ export class LoginEffects {
   redirecionarPage = this.actions$.pipe(
     ofType<actions.RedirectPage>(actions.LoginActionsTypes.REDIRECT),
     tap(() => {
-      this.route.navigate(['/home']);
+      this.route.navigate(['/features']);
     })
   );
 

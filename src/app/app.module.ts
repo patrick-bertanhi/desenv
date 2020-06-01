@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './shared/components/ui/header/header.component';
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -31,8 +30,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
+  AppComponent,
     BuscaEnderecosComponent,
     GeradorComponent,
     ValidadorComponent
