@@ -1,5 +1,6 @@
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './../shared/shared.module';
+import { GeradorComponent } from './gerador/gerador.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,6 +10,7 @@ import { EnderecosListComponent } from './enderecos-list/enderecos-list.componen
 @NgModule({
   declarations: [
     EnderecosListComponent,
+    GeradorComponent,
     HomeComponent],
   imports: [
     CommonModule,

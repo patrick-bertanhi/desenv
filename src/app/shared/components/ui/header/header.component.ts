@@ -22,23 +22,23 @@ export class HeaderComponent implements OnInit {
   }
 
   onRedirectHome() {
-    this.route.navigate(['home']);
+    this.route.navigate(['features/home']);
   }
 
   onRedirectBuscaEnd() {
-    this.route.navigate(['busca-enderecos']);
+    this.route.navigate(['features/busca-enderecos']);
   }
 
   onRedirectEnd() {
-    this.route.navigate(['enderecos']);
+    this.route.navigate(['features/enderecos']);
   }
 
   onRedirectGerador() {
-    this.route.navigate(['gerador']);
+    this.route.navigate(['features/gerador']);
   }
 
   onRedirectValid() {
-    this.route.navigate(['validador']);
+    this.route.navigate(['features/validador']);
   }
 
 }

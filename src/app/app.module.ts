@@ -12,7 +12,6 @@ import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.compo
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TableComponent } from './shared/components/ui/table/table.component';
 import { NgxMaskModule } from 'ngx-mask';
-import { GeradorComponent } from './gerador/gerador.component';
 import { ValidadorComponent } from './validador/validador.component';
 import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 import { StateModule } from './state/state.module';
@@ -32,7 +31,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
   AppComponent,
     BuscaEnderecosComponent,
-    GeradorComponent,
     ValidadorComponent
   ],
   imports: [

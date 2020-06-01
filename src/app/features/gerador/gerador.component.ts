@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { AppState } from '../state';
+import { AppState } from './../../state';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import * as fromGerador from '../state/gerador';
+import * as fromGerador from '../../state/gerador';
 
 
 @Component({

@@ -1,7 +1,6 @@
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginResolver } from './resolver/login.resolver';
 import { ValidadorComponent } from './validador/validador.component';
-import { GeradorComponent } from './gerador/gerador.component';
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -20,11 +19,6 @@ const routes: Routes = [
 {
   path: 'busca-enderecos',
   component: BuscaEnderecosComponent,
-  resolve: { aut: LoginResolver }
-},
-{
-  path: 'gerador',
-  component: GeradorComponent,
   resolve: { aut: LoginResolver }
 },
 {

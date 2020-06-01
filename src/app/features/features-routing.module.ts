@@ -1,5 +1,7 @@
 import { HomeComponent } from './home/home.component';
 import { EnderecosListComponent } from './enderecos-list/enderecos-list.component';
+import { GeradorComponent } from './gerador/gerador.component';
+
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -13,6 +15,11 @@ const routes: Routes = [
   component: HomeComponent,
   canActivate: [AuthGuardService]
 
+},
+{
+  path: 'gerador',
+  component: GeradorComponent,
+  resolve: { aut: LoginResolver }
 },
 {
   path: 'enderecos',
