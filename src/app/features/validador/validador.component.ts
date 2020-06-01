@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { AppState } from '../state';
+import { AppState } from '../../state';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import * as fromValidador from '../state/validador';
+import * as fromValidador from '../../state/validador';
 import { MatSnackBar } from '@angular/material';
 
 

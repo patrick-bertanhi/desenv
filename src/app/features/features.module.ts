@@ -7,11 +7,13 @@ import { CommonModule } from '@angular/common';
 
 import { FeaturesRoutingModule } from './features-routing.module';
 import { EnderecosListComponent } from './enderecos-list/enderecos-list.component';
+import { ValidadorComponent } from './validador/validador.component';
 
 @NgModule({
   declarations: [
     BuscaEnderecosComponent,
     EnderecosListComponent,
+    ValidadorComponent,
     GeradorComponent,
     HomeComponent],
   imports: [

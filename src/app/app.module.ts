@@ -11,7 +11,6 @@ import { HeaderComponent } from './shared/components/ui/header/header.component'
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TableComponent } from './shared/components/ui/table/table.component';
 import { NgxMaskModule } from 'ngx-mask';
-import { ValidadorComponent } from './validador/validador.component';
 import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 import { StateModule } from './state/state.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -28,8 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 @NgModule({
   declarations: [
-  AppComponent,
-  ValidadorComponent
+  AppComponent
   ],
   imports: [
     AuthModule,

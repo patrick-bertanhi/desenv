@@ -1,9 +1,7 @@
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginResolver } from './resolver/login.resolver';
-import { ValidadorComponent } from './validador/validador.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 
 const routes: Routes = [
 { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -14,12 +12,6 @@ const routes: Routes = [
 {
   path: 'features',
   loadChildren: './features/features.module#FeaturesModule'
-},
-{
-  path: 'validador',
-  component: ValidadorComponent,
-  resolve: { aut: LoginResolver }
-
 },
 {
   path: 'not-found',

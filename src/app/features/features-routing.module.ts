@@ -2,6 +2,7 @@ import { HomeComponent } from './home/home.component';
 import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { EnderecosListComponent } from './enderecos-list/enderecos-list.component';
 import { GeradorComponent } from './gerador/gerador.component';
+import { ValidadorComponent } from './validador/validador.component';
 
 
 import { NgModule } from '@angular/core';
@@ -32,6 +33,12 @@ const routes: Routes = [
   path: 'busca-enderecos',
   component: BuscaEnderecosComponent,
   resolve: { aut: LoginResolver }
+},
+{
+  path: 'validador',
+  component: ValidadorComponent,
+  resolve: { aut: LoginResolver }
+
 }
 ];
 
