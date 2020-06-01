@@ -1,4 +1,5 @@
 import { HomeComponent } from './home/home.component';
+import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { EnderecosListComponent } from './enderecos-list/enderecos-list.component';
 import { GeradorComponent } from './gerador/gerador.component';
 
@@ -26,6 +27,11 @@ const routes: Routes = [
   component: EnderecosListComponent,
   resolve: { aut: LoginResolver }
 
+},
+{
+  path: 'busca-enderecos',
+  component: BuscaEnderecosComponent,
+  resolve: { aut: LoginResolver }
 }
 ];
 

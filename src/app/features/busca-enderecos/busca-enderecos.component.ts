@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AppState } from '../state';
+import { AppState } from '../../state';
 import { Store, select } from '@ngrx/store';
 
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import * as fromEndereco from '../state/endereco';
+import * as fromEndereco from '../../state/endereco';
 
 @Component({
   selector: 'app-busca-enderecos',

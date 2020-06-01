@@ -1,7 +1,6 @@
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginResolver } from './resolver/login.resolver';
 import { ValidadorComponent } from './validador/validador.component';
-import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './shared/service/guards/auth-guard.service';
@@ -15,11 +14,6 @@ const routes: Routes = [
 {
   path: 'features',
   loadChildren: './features/features.module#FeaturesModule'
-},
-{
-  path: 'busca-enderecos',
-  component: BuscaEnderecosComponent,
-  resolve: { aut: LoginResolver }
 },
 {
   path: 'validador',

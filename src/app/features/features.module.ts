@@ -1,3 +1,4 @@
+import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './../shared/shared.module';
 import { GeradorComponent } from './gerador/gerador.component';
@@ -9,6 +10,7 @@ import { EnderecosListComponent } from './enderecos-list/enderecos-list.componen
 
 @NgModule({
   declarations: [
+    BuscaEnderecosComponent,
     EnderecosListComponent,
     GeradorComponent,
     HomeComponent],

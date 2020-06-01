@@ -8,7 +8,6 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './shared/components/ui/header/header.component';
-import { BuscaEnderecosComponent } from './busca-enderecos/busca-enderecos.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TableComponent } from './shared/components/ui/table/table.component';
 import { NgxMaskModule } from 'ngx-mask';
@@ -30,8 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
   AppComponent,
-    BuscaEnderecosComponent,
-    ValidadorComponent
+  ValidadorComponent
   ],
   imports: [
     AuthModule,
@@ -54,7 +52,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   exports: [
     BrowserAnimationsModule,
     HeaderComponent,
-    BuscaEnderecosComponent,
     TableComponent,
     NgxMaskModule,
     SharedModule
