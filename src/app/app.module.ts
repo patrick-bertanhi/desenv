@@ -11,7 +11,6 @@ import { HeaderComponent } from './shared/components/ui/header/header.component'
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TableComponent } from './shared/components/ui/table/table.component';
 import { NgxMaskModule } from 'ngx-mask';
-import { AuthGuardService } from './shared/service/guards/auth-guard.service';
 import { StateModule } from './state/state.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { registerLocaleData } from '@angular/common';
@@ -56,8 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
   ConsultaService,
-  BehaviorService,
-  AuthGuardService],
+  BehaviorService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

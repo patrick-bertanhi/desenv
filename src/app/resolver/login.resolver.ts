@@ -13,7 +13,7 @@ export class LoginResolver implements Resolve<boolean> {
         const msg = 'Sessão expirada, faça login novamente';
         const fechar = 'x';
         this.snackBar.open(msg, fechar);
-        return this.router.navigate(['../login']);
+        return this.router.navigate(['login']);
       }
   }
 }
