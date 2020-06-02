@@ -30,7 +30,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     AuthModule,
-    NotFoundModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
